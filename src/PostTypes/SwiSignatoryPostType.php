@@ -2,58 +2,96 @@
 
 namespace Dotburo\PostTypes;
 
+use Dotburo\SwiAdminPostFilter;
 use Dotburo\SwiPetition;
 
 class SwiSignatoryPostType extends SwiPostType {
 
 	const TYPE = 'signatory';
 
-	public function setAdminColumns( $columns ) {
-		$date = $columns['date'];
+	/** @inheritDoc */
+    protected function registerAdminHooks() {
+        $type = self::TYPE;
 
+        $this->loader->add_action( 'init', $this, 'register' );
+
+        //$this->loader->add_filter( 'user_has_cap', $this, 'preventEdit', 10, 3 );
+
+        $this->loader->add_filter( "manage_{$type}_posts_columns", $this, 'setAdminColumns' );
+        $this->loader->add_action( "manage_{$type}_posts_custom_column", $this, 'echoAdminColumnValues', 10, 2 );
+        $this->loader->add_filter( "manage_edit-{$type}_sortable_columns", $this,'setSortableAdminColumns' );
+        $this->loader->add_action( "pre_get_posts", $this, 'sortAdminColumns', 10, 2 );
+
+        //$this->loader->add_filter("post_row_actions",$this, 'removeAdminColumnActions', 10, 2);
+
+        $filter = new SwiAdminPostFilter($this, [
+            'label'  => 'value',
+            'label1' => 'value1',
+            'label2' => 'value2',
+        ]);
+
+        $this->loader->add_action( 'restrict_manage_posts', $filter, 'restrictManagePosts' );
+    }
+
+    /** @inheritDoc */
+    protected function registerPublicHooks() {
+        // TODO: Implement registerPublicHooks() method.
+    }
+
+    public function getAdminHeadCss(): string {
+        return '.post-type-signatory .row-actions { display: inline-block; margin-left: .5em }';
+    }
+
+    public function setAdminColumns( $columns ) {
 		unset( $columns['title'], $columns['date'] );
 
-		$columns['swi_signatory_lname_column'] = __( 'Last Name', SwiPetition::TEXT_DOMAIN );
-		$columns['swi_signatory_fname_column'] = __( 'First Name', SwiPetition::TEXT_DOMAIN );
+        $columns['swi_signatory_fname_column'] = __( 'First Name' );
+		$columns['swi_signatory_lname_column'] = __( 'Last Name' );
 		$columns['swi_signatory_petition_column'] = __( 'Petition', SwiPetition::TEXT_DOMAIN );
-		$columns['swi_signatory_email_column'] = __( 'Email', SwiPetition::TEXT_DOMAIN );
-
-		$columns['date'] = $date;
+		$columns['swi_signatory_email_column'] = __( 'Email' );
+        $columns['swi_signatory_date_column'] = __( 'Date' );
 
 		return $columns;
 	}
 
-	function setSortableAdminColumns( $columns ) {
+    public function setSortableAdminColumns( $columns ) {
 		$columns['swi_signatory_lname_column'] = 'swi_signatory_lname_column';
 		$columns['swi_signatory_fname_column'] = 'swi_signatory_fname_column';
 		$columns['swi_signatory_petition_column'] = 'swi_signatory_petition_column';
+        $columns['swi_signatory_date_column'] = 'swi_signatory_date_column';
 
 		return $columns;
 	}
 
-	function sortAdminColumns( $query ) {
-		$orderBy = $query->get( 'orderby' );
-
-		if ( 'swi_signatory_lname_column' === $orderBy ) {
-			$query->set( 'meta_query', [
-				'relation' => 'OR',
-				[
-					'key'     => 'swi_signatory_lname',
-					'compare' => 'NOT EXISTS',
-				],
-				[ 'key' => 'swi_signatory_lname', ],
-			] );
-			$query->set( 'orderby', 'meta_value' );
-		}
-	}
-
 	public function echoAdminColumnValues( $columnName, $postId ) {
-		$meta = $this->getMeta( $postId );
+        if ($columnName !== 'swi_signatory_date_column') {
+            $this->meta = $this->meta ?: $this->getMeta( $postId );
 
-		echo $meta[ str_replace( '_column', '', $columnName ) ] ?? '';
+            echo $this->meta[ str_replace( '_column', '', $columnName ) ] ?? '';
+        } else {
+            $modTime = get_the_modified_date();
+            echo date_i18n(get_option('date_format'), $modTime )
+                . ' at ' . date_i18n(get_option('time_format'), $modTime );
+        }
 	}
 
-	function removeAdminColumnActions( $actions, $post ) {
+    public function sortAdminColumns( $query ) {
+        $orderBy = $query->get( 'orderby' );
+
+        if ( 'swi_signatory_lname_column' === $orderBy ) {
+            $query->set( 'meta_query', [
+                'relation' => 'OR',
+                [
+                    'key'     => 'swi_signatory_lname',
+                    'compare' => 'NOT EXISTS',
+                ],
+                [ 'key' => 'swi_signatory_lname', ],
+            ] );
+            $query->set( 'orderby', 'meta_value' );
+        }
+    }
+
+    public function removeAdminColumnActions( $actions, $post ) {
 
 		if ( $post->post_type === self::TYPE ) {
 			unset(
@@ -74,7 +112,7 @@ class SwiSignatoryPostType extends SwiPostType {
 	 *
 	 * @return mixed
 	 */
-	function preventEdit( $userCaps, $reqCap, $args ) {
+	public function preventEdit( $userCaps, $reqCap, $args ) {
 
 		# Bail out if we're not asking to edit a post or user already cannot edit the post.
 		if ( 'edit_post' !== $args[0] || empty( $userCaps['edit_posts'] ) ) {
@@ -108,15 +146,7 @@ class SwiSignatoryPostType extends SwiPostType {
 			'update_item'           => __( 'Update Signatory', $textDomain ),
 			'view_item'             => __( 'View Signatory', $textDomain ),
 			'view_items'            => __( 'View Signatories', $textDomain ),
-			'search_items'          => __( 'Search Signatory', $textDomain ),
-			'not_found'             => __( 'Not found', $textDomain ),
-			'not_found_in_trash'    => __( 'Not found in Trash', $textDomain ),
-			'featured_image'        => __( 'Featured Image', $textDomain ),
-			'set_featured_image'    => __( 'Set featured image', $textDomain ),
-			'remove_featured_image' => __( 'Remove featured image', $textDomain ),
-			'use_featured_image'    => __( 'Use as featured image', $textDomain ),
-			'insert_into_item'      => __( 'Insert into signatory', $textDomain ),
-			'uploaded_to_this_item' => __( 'Uploaded to this signatory', $textDomain ),
+			'search_items'          => __( 'Search Signatories', $textDomain ),
 			'items_list'            => __( 'Signatories list', $textDomain ),
 			'items_list_navigation' => __( 'Signatories list navigation', $textDomain ),
 			'filter_items_list'     => __( 'Filter Signatory list', $textDomain ),
@@ -126,21 +156,28 @@ class SwiSignatoryPostType extends SwiPostType {
 			'label'               => __( 'Signatory', $textDomain ),
 			'description'         => __( 'Signatory post type', $textDomain ),
 			'labels'              => $labels,
-			'supports'            => array( 'custom-fields' ),
+			'supports'            => [ 'custom-fields' ],
 			'hierarchical'        => false,
 			'public'              => false,
 			'show_ui'             => true,
 			'show_in_menu'        => true,
 			'menu_position'       => 27,
 			'menu_icon'           => 'dashicons-groups',
-			'show_in_admin_bar'   => true,
+			'show_in_admin_bar'   => false,
 			'show_in_nav_menus'   => false,
-			'can_export'          => true,
+			'can_export'          => false,
 			'has_archive'         => false,
 			'exclude_from_search' => true,
-			'publicly_queryable'  => true,
-			'capability_type'     => 'page',
-			'show_in_rest'        => false,
+			'publicly_queryable'  => false,
+            'show_in_rest'        => false,
+			'capability_type'     => 'post',
+            # Remove signatories creation and "Add New" buttons from admin
+            'capabilities' => [
+                'create_posts' => false,
+            ],
+            # Do not allowed to edit/delete existing signatories
+            'map_meta_cap' => false,
+
 		];
 
 		register_post_type( self::TYPE, $args );

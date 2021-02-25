@@ -3,15 +3,33 @@
 namespace Dotburo\PostTypes;
 
 use Dotburo\SwiPetition;
+use WP_Post;
 
 class SwiPetitionPostType extends SwiPostType {
 
 	/** @var string */
 	const TYPE = 'petition';
 
+    protected function registerAdminHooks() {
+        $this->loader->add_action( 'init', $this, 'register' );
+        //$this->loader->add_action( "save_post_{$typePetition}", $this, 'setHash', 10, 3 );
+    }
+
+    protected function registerPublicHooks() {
+        // TODO: Implement registerPublicHooks() method.
+    }
+
+	public function setHash(int $postId, WP_Post $post, bool $update) {
+	    if (!$update) {
+            $hash = md5($post->post_name . strtotime('now'));
+
+            update_metadata( 'post', $postId, 'swi_petition_hash', $hash );
+        }
+    }
+
 	public function register() {
 		$textDomain = SwiPetition::TEXT_DOMAIN;
-		
+
 		$labels = [
 			'name'                  => _x( 'Petitions', 'Post Type General Name', $textDomain ),
 			'singular_name'         => _x( 'Petition', 'Post Type Singular Name', $textDomain ),
@@ -29,13 +47,13 @@ class SwiPetitionPostType extends SwiPostType {
 			'view_item'             => __( 'View Petition', $textDomain ),
 			'view_items'            => __( 'View Petitions', $textDomain ),
 			'search_items'          => __( 'Search Petition', $textDomain ),
-			'not_found'             => __( 'Not found', $textDomain ),
-			'not_found_in_trash'    => __( 'Not found in Trash', $textDomain ),
-			'featured_image'        => __( 'Featured Image', $textDomain ),
-			'set_featured_image'    => __( 'Set featured image', $textDomain ),
-			'remove_featured_image' => __( 'Remove featured image', $textDomain ),
-			'use_featured_image'    => __( 'Use as featured image', $textDomain ),
-			'insert_into_item'      => __( 'Insert into item', $textDomain ),
+			'not_found'             => __( 'Not found' ),
+			'not_found_in_trash'    => __( 'Not found in Trash' ),
+			'featured_image'        => __( 'Featured Image' ),
+			'set_featured_image'    => __( 'Set featured image' ),
+			'remove_featured_image' => __( 'Remove featured image' ),
+			'use_featured_image'    => __( 'Use as featured image' ),
+			'insert_into_item'      => __( 'Insert into item' ),
 			'uploaded_to_this_item' => __( 'Uploaded to this petition', $textDomain ),
 			'items_list'            => __( 'Petitions list', $textDomain ),
 			'items_list_navigation' => __( 'Petitions list navigation', $textDomain ),
@@ -45,7 +63,7 @@ class SwiPetitionPostType extends SwiPostType {
 			'label'                 => __( 'Petition', $textDomain ),
 			'description'           => __( 'Petition post type', $textDomain ),
 			'labels'                => $labels,
-			'supports'              => array( 'title', 'editor', 'thumbnail' ),
+			'supports'              => [ 'title', 'editor', 'thumbnail' ],
 			'hierarchical'          => false,
 			'public'                => true,
 			'show_ui'               => true,

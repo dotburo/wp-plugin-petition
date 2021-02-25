@@ -34,117 +34,66 @@ use Dotburo\PostTypes\SwiSignatoryPostType;
  */
 class SwiPetition {
 
+    /** @var string */
+    const PLUGIN_NAME = 'swi-petition';
+
 	/** @var string */
 	const TEXT_DOMAIN = 'swi-petition';
 
-	/**
-	 * The loader that's responsible for maintaining and registering all hooks that power
-	 * the plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   protected
-	 * @var      SwiHookLoader $loader Maintains and registers all hooks for the plugin.
-	 */
-	protected $loader;
+    /**
+     * The current version of the plugin.
+     *
+     * @since    1.0.0
+     * @access   protected
+     * @var      string $version The current version of the plugin.
+     */
+    protected $version = '1.0.0';
 
-	/**
-	 * The unique identifier of this plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   protected
-	 * @var      string $plugin_name The string used to uniquely identify this plugin.
-	 */
-	protected $plugin_name;
-
-	/**
-	 * The current version of the plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   protected
-	 * @var      string $version The current version of the plugin.
-	 */
-	protected $version;
+    /**
+     * The loader that's responsible for maintaining and registering all hooks that power
+     * the plugin.
+     *
+     * @since    1.0.0
+     * @access   protected
+     * @var      SwiHookLoader $loader Maintains and registers all hooks for the plugin.
+     */
+    protected $loader;
 
 	/**
 	 * @var array
 	 */
 	protected $post_types = [];
 
-	/**
-	 * Define the core functionality of the plugin.
-	 *
-	 * Set the plugin name and the plugin version that can be used throughout the plugin.
-	 * Load the dependencies, define the locale, and set the hooks for the admin area and
-	 * the public-facing side of the site.
-	 *
-	 * @since    1.0.0
-	 */
-	public function __construct() {
-		$this->version = SWI_PETITION_VERSION;
-
-		$this->plugin_name = 'swi-petition';
-
-		$this->load_dependencies();
-
-		$this->loader = new SwiHookLoader();;
+    /**
+     * Define the core functionality of the plugin.
+     *
+     * Set the plugin name and the plugin version that can be used throughout the plugin.
+     * Load the dependencies, define the locale, and set the hooks for the admin area and
+     * the public-facing side of the site.
+     *
+     * @param SwiHookLoader $loader
+     *
+     * @since    1.0.0
+     */
+	public function __construct(SwiHookLoader $loader) {
+		$this->loader = $loader;;
 
 		$this->set_locale();
 
 		$this->register_post_types();
 
-		//$this->define_admin_hooks();
+		$this->configureAdmin();
 		//$this->define_public_hooks();
 
 	}
 
 	private function register_post_types() {
-		$typeSignatory = SwiSignatoryPostType::TYPE;
-		$typePetition = SwiPetitionPostType::TYPE;
 
 		$this->post_types = [
-			$typeSignatory => $signatory = new SwiSignatoryPostType(),
-			$typePetition  => $petition = new SwiPetitionPostType(),
+            SwiSignatoryPostType::TYPE => new SwiSignatoryPostType($this->loader),
+            SwiPetitionPostType::TYPE  => new SwiPetitionPostType($this->loader),
 		];
 
-		$this->loader->add_action( 'init', $signatory, 'register' );
-		$this->loader->add_action( 'init', $petition, 'register' );
-
-		if (is_admin()) {
-			$this->loader->add_filter( "manage_{$typeSignatory}_posts_columns", $signatory, 'setAdminColumns' );
-			$this->loader->add_action( "manage_{$typeSignatory}_posts_custom_column", $signatory, 'echoAdminColumnValues', 10, 2 );
-			$this->loader->add_filter( "manage_edit-{$typeSignatory}_sortable_columns", $signatory,'setSortableAdminColumns' );
-			$this->loader->add_filter("post_row_actions",$signatory, 'removeAdminColumnActions', 10, 2);
-			$this->loader->add_action( "pre_get_posts", $signatory, 'sortAdminColumns', 10, 2 );
-			$this->loader->add_filter( 'user_has_cap', $signatory, 'preventEdit', 10, 3 );
-
-		}
-
-	}
-
-	/**
-	 * Load the required dependencies for this plugin.
-	 *
-	 * Include the following files that make up the plugin:
-	 *
-	 * - SwiHookLoader. Orchestrates the hooks of the plugin.
-	 * - Swi_Petition_i18n. Defines internationalization functionality.
-	 * - Swi_Petition_Admin. Defines all hooks for the admin area.
-	 * - Swi_Petition_Public. Defines all hooks for the public side of the site.
-	 *
-	 * Create an instance of the loader which will be used to register the hooks
-	 * with WordPress.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 */
-	private function load_dependencies() {
-		$pluginDir = plugin_dir_path( dirname( __FILE__ ) );
-
-		# The class responsible for defining all actions that occur in the admin area.
-		//require_once "{$pluginDir}admin/class-swi-petition-admin.php";
-
-		# The class responsible for defining all actions that occur in the public-facing side of the site.
-		///require_once "{$pluginDir}public/class-swi-petition-public.php";
 	}
 
 	/**
@@ -171,14 +120,27 @@ class SwiPetition {
 	 * @since    1.0.0
 	 * @access   private
 	 */
-	private function define_admin_hooks() {
+	private function configureAdmin() {
 
-		$plugin_admin = new Swi_Petition_Admin( $this->get_plugin_name(), $this->get_version() );
+        $this->loader->add_action( 'admin_head', $this, 'echoAdminHeadCss', PHP_INT_MAX, 0);
 
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+
+		//$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
+		//$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
 	}
+
+	public function echoAdminHeadCss() {
+        foreach ($this->post_types as $post_type) {
+            if (method_exists($post_type, 'getAdminHeadCss')) {
+                $css[] = $post_type->getAdminHeadCss();
+            }
+        }
+
+        if (!empty($css)) {
+            echo "<style>" . implode( '', $css ) . "</style>";
+        }
+    }
 
 	/**
 	 * Register all of the hooks related to the public-facing functionality
@@ -213,7 +175,7 @@ class SwiPetition {
 	 * @since     1.0.0
 	 */
 	public function get_plugin_name() {
-		return $this->plugin_name;
+		return self::PLUGIN_NAME;
 	}
 
 	/**
