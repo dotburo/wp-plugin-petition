@@ -15,15 +15,11 @@ class SwiSignatoryPostType extends SwiPostType {
 
         $this->loader->add_action( 'init', $this, 'register' );
 
-        //$this->loader->add_filter( 'user_has_cap', $this, 'preventEdit', 10, 3 );
-
         $this->loader->add_filter( "manage_{$type}_posts_columns", $this, 'setAdminColumns' );
         $this->loader->add_action( "manage_{$type}_posts_custom_column", $this, 'echoAdminColumnValues', 10, 2 );
         $this->loader->add_filter( "manage_edit-{$type}_sortable_columns", $this,'setSortableAdminColumns' );
         $this->loader->add_action( "pre_get_posts", $this, 'sortAdminColumns', 10, 2 );
-
-        //$this->loader->add_filter("post_row_actions",$this, 'removeAdminColumnActions', 10, 2);
-
+        
         $filter = new SwiAdminPostFilter($this, [
             'label'  => 'value',
             'label1' => 'value1',
@@ -90,41 +86,6 @@ class SwiSignatoryPostType extends SwiPostType {
             $query->set( 'orderby', 'meta_value' );
         }
     }
-
-    public function removeAdminColumnActions( $actions, $post ) {
-
-		if ( $post->post_type === self::TYPE ) {
-			unset(
-				$actions['edit'],
-				$actions['inline hide-if-no-js'],
-				//$actions['trash'],
-				$actions['view'],
-			);
-		}
-
-		return $actions;
-	}
-
-	/**
-	 * @param $userCaps
-	 * @param $reqCap
-	 * @param $args
-	 *
-	 * @return mixed
-	 */
-	public function preventEdit( $userCaps, $reqCap, $args ) {
-
-		# Bail out if we're not asking to edit a post or user already cannot edit the post.
-		if ( 'edit_post' !== $args[0] || empty( $userCaps['edit_posts'] ) ) {
-			return $userCaps;
-		}
-
-		if ( get_post_type( $args[2] ) === self::TYPE ) {
-			$userCaps[ $reqCap[0] ] = false;
-		}
-
-		return $userCaps;
-	}
 
 	/** @inheritDoc */
 	public function register() {
