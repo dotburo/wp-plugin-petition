@@ -80,6 +80,6 @@ class SwiPetitionPostType extends SwiPostType {
 			'show_in_rest'          => true,
 		];
 
-		register_post_type( self::TYPE, $args );
+		register_post_type( static::TYPE, $args );
 	}
 }

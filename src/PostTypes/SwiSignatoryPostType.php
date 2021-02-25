@@ -11,7 +11,7 @@ class SwiSignatoryPostType extends SwiPostType {
 
 	/** @inheritDoc */
     protected function registerAdminHooks() {
-        $type = self::TYPE;
+        $type = static::TYPE;
 
         $this->loader->add_action( 'init', $this, 'register' );
 
@@ -19,12 +19,8 @@ class SwiSignatoryPostType extends SwiPostType {
         $this->loader->add_action( "manage_{$type}_posts_custom_column", $this, 'echoAdminColumnValues', 10, 2 );
         $this->loader->add_filter( "manage_edit-{$type}_sortable_columns", $this,'setSortableAdminColumns' );
         $this->loader->add_action( "pre_get_posts", $this, 'sortAdminColumns', 10, 2 );
-        
-        $filter = new SwiAdminPostFilter($this, [
-            'label'  => 'value',
-            'label1' => 'value1',
-            'label2' => 'value2',
-        ]);
+
+        $filter = new SwiAdminPostFilter($this, SwiPetitionPostType::getPostIds('post_title'));
 
         $this->loader->add_action( 'restrict_manage_posts', $filter, 'restrictManagePosts' );
     }
@@ -141,7 +137,7 @@ class SwiSignatoryPostType extends SwiPostType {
 
 		];
 
-		register_post_type( self::TYPE, $args );
+		register_post_type( static::TYPE, $args );
 
 	}
 }

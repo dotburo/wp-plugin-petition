@@ -47,6 +47,21 @@ abstract class SwiPostType {
         }
     }
 
+    public static function getPostIds(string $keyBy = '') {
+        $posts = get_posts([
+            'post_type' => static::TYPE,
+            'numberposts' => -1,
+        ]);
+
+        if ($keyBy) {
+            $posts = array_column($posts, null, $keyBy);
+        }
+
+        return array_map(function ($post) {
+            return $post->ID;
+        }, $posts);
+    }
+
 	/**
 	 * @param int $id
 	 * @return array
