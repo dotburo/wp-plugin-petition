@@ -15,6 +15,8 @@ class SwiSignatoryPostType extends SwiPostType {
 
         $this->loader->add_action( 'init', $this, 'register' );
 
+        $this->loader->add_filter( "bulk_actions-edit-{$type}", '__return_empty_array', null, PHP_INT_MAX );
+
         $this->loader->add_filter( "manage_{$type}_posts_columns", $this, 'setAdminColumns' );
         $this->loader->add_action( "manage_{$type}_posts_custom_column", $this, 'echoAdminColumnValues', 10, 2 );
         $this->loader->add_filter( "manage_edit-{$type}_sortable_columns", $this,'setSortableAdminColumns' );
