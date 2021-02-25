@@ -1,0 +1,29 @@
+{
+    "name": "dotburo/wp-plugin-petition",
+    "description": "Create and manage petitions in WordPress.",
+    "version": "1.0.0",
+    "type": "library",
+    "license": "GPL-3.0-or-later",
+    "keywords": ["wordpress", "petition", "sign"],
+    "homepage": "https://github.com/dotburo/wp-plugin-petition#readme",
+    "authors": [
+        {
+            "name": "dotburo",
+            "email": "code@dotburo.org",
+            "homepage": "https://dotburo.org"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dotburo\\" : "src/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit tests"
+    }
+}
