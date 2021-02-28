@@ -2,8 +2,10 @@
 
 namespace Dotburo;
 
+use Dotburo\AdminArea\SwiAdminArea;
 use Dotburo\PostTypes\SwiPetitionPostType;
 use Dotburo\PostTypes\SwiSignatoryPostType;
+use Dotburo\PublicArea\SwiPublicArea;
 
 /**
  * The file that defines the core plugin class
@@ -37,17 +39,11 @@ class SwiPetition {
     /** @var string */
     const PLUGIN_NAME = 'swi-petition';
 
+    /** @var string */
+    const PLUGIN_VERSION = '1.0.0';
+
 	/** @var string */
 	const TEXT_DOMAIN = 'swi-petition';
-
-    /**
-     * The current version of the plugin.
-     *
-     * @since    1.0.0
-     * @access   protected
-     * @var      string $version The current version of the plugin.
-     */
-    protected $version = '1.0.0';
 
     /**
      * The loader that's responsible for maintaining and registering all hooks that power
@@ -59,10 +55,8 @@ class SwiPetition {
      */
     protected $loader;
 
-	/**
-	 * @var array
-	 */
-	protected $post_types = [];
+	/** @var array */
+	protected $postTypes = [];
 
     /**
      * Define the core functionality of the plugin.
@@ -76,20 +70,24 @@ class SwiPetition {
      * @since    1.0.0
      */
 	public function __construct(SwiHookLoader $loader) {
-		$this->loader = $loader;;
+	    $isAdmin = is_admin();
 
-		$this->set_locale();
+		$this->loader = $loader;
 
-		$this->register_post_types();
+		$this->setLocale();
 
-		$this->configureAdmin();
-		//$this->define_public_hooks();
+		$this->registerPostTypes();
 
+		if ($isAdmin) {
+            $this->configureAdminArea( $this->loader, $this->postTypes );
+        } else {
+            $this->configurePublicArea( $this->loader, $this->postTypes );
+        }
 	}
 
-	private function register_post_types() {
+	private function registerPostTypes() {
 
-		$this->post_types = [
+		$this->postTypes = [
             SwiSignatoryPostType::TYPE => new SwiSignatoryPostType($this->loader),
             SwiPetitionPostType::TYPE  => new SwiPetitionPostType($this->loader),
 		];
@@ -105,7 +103,7 @@ class SwiPetition {
 	 * @since    1.0.0
 	 * @access   private
 	 */
-	private function set_locale() {
+	private function setLocale() {
 
 		$plugin_i18n = new SwiLocalisation();
 
@@ -113,50 +111,49 @@ class SwiPetition {
 
 	}
 
-	/**
-	 * Register all of the hooks related to the admin area functionality
-	 * of the plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 */
-	private function configureAdmin() {
+    /**
+     * Register all of the hooks related to the admin area functionality
+     * of the plugin.
+     *
+     * @param SwiHookLoader $loader
+     * @param array $postTypes
+     *
+     * @return SwiAdminArea
+     * @since    1.0.0
+     * @access   private
+     */
+	private function configureAdminArea( SwiHookLoader $loader, array $postTypes): SwiAdminArea {
 
-        $this->loader->add_action( 'admin_head', $this, 'echoAdminHeadCss', PHP_INT_MAX, 0);
-
-
-		//$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
-		//$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+        return new SwiAdminArea( $loader, $postTypes );
 
 	}
 
-	public function echoAdminHeadCss() {
-        foreach ($this->post_types as $post_type) {
-            if (method_exists($post_type, 'getAdminHeadCss')) {
-                $css[] = $post_type->getAdminHeadCss();
-            }
-        }
 
-        if (!empty($css)) {
-            echo "<style>" . implode( '', $css ) . "</style>";
-        }
+    /**
+     * Register all of the hooks related to the public-facing functionality
+     * of the plugin.
+     *
+     * @param SwiHookLoader $loader
+     * @param array $postTypes
+     *
+     * @return SwiPublicArea
+     * @since    1.0.0
+     * @access   private
+     */
+	private function configurePublicArea( SwiHookLoader $loader, array $postTypes ): SwiPublicArea {
+
+		return new SwiPublicArea( $loader, $postTypes );
+
+	}
+
+    /**
+     * @param string $suffix
+     *
+     * @return string
+     */
+	public static function createEnqueueHandle( string $suffix = ''): string {
+	    return static::PLUGIN_NAME . ( $suffix ? '-' . ltrim($suffix, '-') : '' );
     }
-
-	/**
-	 * Register all of the hooks related to the public-facing functionality
-	 * of the plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 */
-	private function define_public_hooks() {
-
-		$plugin_public = new Swi_Petition_Public( $this->get_plugin_name(), $this->get_version() );
-
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-
-	}
 
 	/**
 	 * Run the loader to execute all of the hooks with WordPress.
@@ -168,34 +165,13 @@ class SwiPetition {
 	}
 
 	/**
-	 * The name of the plugin used to uniquely identify it within the context of
-	 * WordPress and to define internationalization functionality.
-	 *
-	 * @return    string    The name of the plugin.
-	 * @since     1.0.0
-	 */
-	public function get_plugin_name() {
-		return self::PLUGIN_NAME;
-	}
-
-	/**
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @return    SwiHookLoader    Orchestrates the hooks of the plugin.
 	 * @since     1.0.0
 	 */
-	public function get_loader() {
+	public function getLoader(): SwiHookLoader {
 		return $this->loader;
-	}
-
-	/**
-	 * Retrieve the version number of the plugin.
-	 *
-	 * @return    string    The version number of the plugin.
-	 * @since     1.0.0
-	 */
-	public function get_version() {
-		return $this->version;
 	}
 
 }

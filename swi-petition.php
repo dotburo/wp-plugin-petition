@@ -69,7 +69,10 @@ register_deactivation_hook( __FILE__, 'deactivate_swi_petition' );
  */
 function run_swi_petition() {
 
-	$plugin = new SwiPetition(new SwiHookLoader());
+    $loader = new SwiHookLoader(__DIR__);
+
+	$plugin = new SwiPetition($loader);
+
 	$plugin->run();
 
 }

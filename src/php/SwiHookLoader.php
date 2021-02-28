@@ -44,6 +44,16 @@ class SwiHookLoader {
 	protected $filters = [];
 
 	/**
+     * @var string
+     */
+    protected $pluginPath;
+
+    public function __construct(string $pluginPath) {
+
+        $this->pluginPath = $pluginPath;
+    }
+
+	/**
 	 * Add a new action to the collection to be registered with WordPress.
 	 *
 	 * @since    1.0.0
@@ -127,5 +137,23 @@ class SwiHookLoader {
 		}
 
 	}
+
+    /**
+     * @param string $path
+     *
+     * @return string
+     */
+    public function getPluginPath(string $path = ''): string {
+        return $this->pluginPath . ltrim($path, '/');
+    }
+
+    /**
+     * @param string $path
+     *
+     * @return string
+     */
+    public function getPluginBuildPath(string $path = ''): string {
+        return $this->pluginPath . '/build/' . ltrim($path, '/');
+    }
 
 }

@@ -2,7 +2,7 @@
 
 namespace Dotburo\PostTypes;
 
-use Dotburo\SwiAdminPostFilter;
+use Dotburo\AdminArea\SwiAdminPostFilter;
 use Dotburo\SwiPetition;
 
 class SwiSignatoryPostType extends SwiPostType {
@@ -12,8 +12,6 @@ class SwiSignatoryPostType extends SwiPostType {
 	/** @inheritDoc */
     protected function registerAdminHooks() {
         $type = static::TYPE;
-
-        $this->loader->add_action( 'init', $this, 'register' );
 
         $this->loader->add_filter( "bulk_actions-edit-{$type}", '__return_empty_array', null, PHP_INT_MAX );
 
@@ -86,7 +84,7 @@ class SwiSignatoryPostType extends SwiPostType {
     }
 
 	/** @inheritDoc */
-	public function register() {
+	public function init() {
 		$textDomain = SwiPetition::TEXT_DOMAIN;
 
 		$labels = [

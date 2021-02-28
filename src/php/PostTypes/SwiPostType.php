@@ -19,7 +19,7 @@ abstract class SwiPostType {
 	 * @return mixed
 	 * @return void
 	 */
-	abstract public function register();
+	abstract public function init();
 
     /**
      * @return void
@@ -39,6 +39,8 @@ abstract class SwiPostType {
 	public function __construct(SwiHookLoader $loader) {
 
         $this->loader = $loader;
+
+        $this->loader->add_action( 'init', $this, 'init' );
 
         if (is_admin()) {
             $this->registerAdminHooks();

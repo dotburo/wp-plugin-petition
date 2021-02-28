@@ -1,6 +1,6 @@
 <?php
 
-namespace Dotburo;
+namespace Dotburo\AdminArea;
 
 use Dotburo\PostTypes\SwiPostType;
 
