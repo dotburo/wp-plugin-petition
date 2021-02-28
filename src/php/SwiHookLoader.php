@@ -144,7 +144,7 @@ class SwiHookLoader {
      * @return string
      */
     public function getPluginPath(string $path = ''): string {
-        return $this->pluginPath . ltrim($path, '/');
+        return $this->pluginPath . '/' . ltrim($path, '/');
     }
 
     /**

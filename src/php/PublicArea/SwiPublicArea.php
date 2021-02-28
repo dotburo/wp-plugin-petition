@@ -42,12 +42,13 @@ class SwiPublicArea extends SwiArea {
 
     /** @inheritDoc */
 	public function enqueue_scripts() {
+	    $file = $this->loader->getPluginPath('build/swi-petition-public.min.js');
 
 		wp_enqueue_script(
             SwiPetition::PLUGIN_NAME,
-            plugins_url( 'build/swi-petition-public.min.js', $this->loader->getPluginPath() ),
+            plugins_url( '/swi-petition-public.min.js', $file ),
             [],
-            filemtime( $this->loader->getPluginPath( 'build/swi-petition-public.min.js' ) ),
+            filemtime( $file ),
             true
         );
 
