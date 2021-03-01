@@ -53,7 +53,7 @@ class SwiAdminArea extends SwiArea {
 
     /** @inheritDoc */
 	public function enqueue_scripts() {
-	    $handle = SwiPetition::createEnqueueHandle('admin');
+	    $handle = SwiPetition::createEnqueueHandle();
 
         $assetPath = $this->loader->getPluginBuildPath('index.asset.php');
 

@@ -112,18 +112,22 @@ class SwiPublicArea extends SwiArea {
     public function enqueue_scripts() {
         global $post;
 
+        $handle = SwiPetition::createEnqueueHandle();
+
         $file = $this->loader->getPluginPath( 'build/swi-petition-public.min.js' );
 
         wp_enqueue_script(
-            SwiPetition::PLUGIN_NAME,
+            $handle,
             plugins_url( '/swi-petition-public.min.js', $file ),
             [],
             filemtime( $file ),
             true
         );
 
+        wp_set_script_translations( $handle, 'swi-petition', $this->loader->getPluginPath('languages') );
+
         wp_localize_script(
-            SwiPetition::PLUGIN_NAME,
+            $handle,
             'swiPetition',
             [
                 'url'    => admin_url( 'admin-ajax.php' ),

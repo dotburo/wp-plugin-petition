@@ -281,3 +281,15 @@ msgstr "Bloc formulaire"
 #: /src/js/admin/index.js:1
 msgid "Input fields for Petition!"
 msgstr "Champs pour Petition!"
+
+#: /src/js/admin/index.js:1
+msgid "The %s field cannot be blank."
+msgstr "Le champ '%s' ne peut pas être vide."
+
+#: /src/js/admin/index.js:1
+msgid "Your email address seems wrong."
+msgstr "Votre adresse mail contient une erreur."
+
+#: /src/js/admin/index.js:1
+msgid "The zip code format is wrong."
+msgstr "Le code postale n'est pas correct."

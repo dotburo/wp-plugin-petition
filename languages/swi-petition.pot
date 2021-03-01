@@ -280,3 +280,15 @@ msgstr ""
 #: /src/js/admin/index.js:1
 msgid "Input fields for Petition!"
 msgstr ""
+
+#: /src/js/admin/index.js:1
+msgid "The %s field cannot be blank."
+msgstr ""
+
+#: /src/js/admin/index.js:1
+msgid "Your email address seems wrong."
+msgstr ""
+
+#: /src/js/admin/index.js:1
+msgid "The zip code format is wrong."
+msgstr ""
