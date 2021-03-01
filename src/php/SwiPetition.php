@@ -43,7 +43,7 @@ class SwiPetition {
     const PLUGIN_VERSION = '1.0.0';
 
 	/** @var string */
-	const TEXT_DOMAIN = 'swi-petition';
+	const TXT_DOMAIN = 'swi-petition';
 
     /**
      * The loader that's responsible for maintaining and registering all hooks that power
@@ -80,9 +80,10 @@ class SwiPetition {
 
 		if ($isAdmin) {
             $this->configureAdminArea( $this->loader, $this->postTypes );
-        } else {
-            $this->configurePublicArea( $this->loader, $this->postTypes );
         }
+
+		// ajax needs is_admin()
+        $this->configurePublicArea( $this->loader, $this->postTypes );
 	}
 
 	private function registerPostTypes() {
@@ -105,9 +106,9 @@ class SwiPetition {
 	 */
 	private function setLocale() {
 
-		$plugin_i18n = new SwiLocalisation();
+		$plugin_i18n = new SwiLocalisation($this->loader);
 
-		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
+		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'loadTextDomain' );
 
 	}
 

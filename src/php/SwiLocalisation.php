@@ -1,7 +1,5 @@
 <?php
 
-namespace Dotburo;
-
 /**
  * Define the internationalization functionality
  *
@@ -14,6 +12,8 @@ namespace Dotburo;
  * @package    Swi_Petition
  * @subpackage Swi_Petition/includes
  */
+
+namespace Dotburo;
 
 /**
  * Define the internationalization functionality.
@@ -28,22 +28,32 @@ namespace Dotburo;
  */
 class SwiLocalisation {
 
+    /** @var SwiHookLoader */
+    private $loader;
+
+    /**
+     * SwiLocalisation constructor.
+     *
+     * @param SwiHookLoader $loader
+     */
+    public function __construct(SwiHookLoader $loader) {
+
+        $this->loader = $loader;
+    }
 
 	/**
 	 * Load the plugin text domain for translation.
 	 *
 	 * @since    1.0.0
 	 */
-	public function load_plugin_textdomain() {
+	public function loadTextDomain() {
 
 		load_plugin_textdomain(
 			'swi-petition',
 			false,
-			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
+			$this->loader->getPluginPath('languages')
 		);
 
 	}
-
-
 
 }

@@ -53,7 +53,7 @@ class SwiAdminArea extends SwiArea {
 
     /** @inheritDoc */
 	public function enqueue_scripts() {
-	    $handle = SwiPetition::createEnqueueHandle('blocks');
+	    $handle = SwiPetition::createEnqueueHandle('admin');
 
         $assetPath = $this->loader->getPluginBuildPath('index.asset.php');
 
@@ -66,10 +66,10 @@ class SwiAdminArea extends SwiArea {
             $script_asset['version']
         );
 
-        // wp_set_script_translations( 'create-block-starter-block-block-editor', 'starter-block' );
+        wp_set_script_translations( $handle, 'swi-petition', $this->loader->getPluginPath('languages') );
 
         register_block_type(
-            'create-block/starter-block',
+            'swi-petition/form-block',
             [
                 'editor_script' => $handle,
                 'editor_style'  => $handle,
@@ -77,27 +77,28 @@ class SwiAdminArea extends SwiArea {
             ]
         );
 
-        /*
-		wp_enqueue_script(
-            SwiPetition::PLUGIN_NAME,
-            plugins_url( 'build/swi-petition-admin.js', $this->loader->getPluginPath() ),
-            [],
-            SwiPetition::PLUGIN_VERSION,
-            false
-        ); */
+        register_block_type(
+            'swi-petition/counter-block',
+            [
+                'editor_script' => $handle,
+                'editor_style'  => $handle,
+                'style'         => SwiPetition::PLUGIN_NAME,
+            ]
+        );
 
 	}
 
     /** @inheritDoc */
     public function enqueue_styles() {
 
-        /*
+        $file = $this->loader->getPluginPath( 'build/index.css' );
+
         wp_enqueue_style(
             SwiPetition::PLUGIN_NAME,
-            plugins_url( 'build/swi-petition-admin.css', $this->loader->getPluginPath() ),
+            plugins_url( 'index.css', $file ),
             [],
-            filemtime( $this->loader->getPluginPath( 'build/swi-petition-admin.min.css' ) )
-        );*/
+            filemtime( $file )
+        );
 
     }
 

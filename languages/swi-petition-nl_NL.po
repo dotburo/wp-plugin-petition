@@ -1,11 +1,10 @@
-# Copyright (C) 2021 dotburo
-# This file is distributed under the same license as the Petition! plugin.
 msgid ""
 msgstr ""
 "Project-Id-Version: Petition! 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/swi-petition\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: nl_NL\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -37,30 +36,30 @@ msgstr "https://dotburo.org"
 #: src/php/PostTypes/SwiPetitionPostType.php:70
 msgctxt "Post Type General Name"
 msgid "Petitions"
-msgstr ""
+msgstr "Petities"
 
 #: src/php/PostTypes/SwiPetitionPostType.php:71
 msgctxt "Post Type Singular Name"
 msgid "Petition"
-msgstr ""
+msgstr "Petitie"
 
 #: src/php/PostTypes/SwiPetitionPostType.php:72
 msgid "Petitions"
-msgstr ""
+msgstr "Petities"
 
 #: src/php/PostTypes/SwiPetitionPostType.php:73
 #: src/php/PostTypes/SwiPetitionPostType.php:99
 #: src/php/PostTypes/SwiSignatoryPostType.php:43
 msgid "Petition"
-msgstr ""
+msgstr "Petitie"
 
 #: src/php/PostTypes/SwiPetitionPostType.php:74
 msgid "Petition Archives"
-msgstr ""
+msgstr "Petitie-archiven"
 
 #: src/php/PostTypes/SwiPetitionPostType.php:75
 msgid "Petition Attributes"
-msgstr ""
+msgstr "Petitie-attributen"
 
 #: src/php/PostTypes/SwiPetitionPostType.php:76
 msgid "Parent Petition:"
@@ -68,7 +67,7 @@ msgstr ""
 
 #: src/php/PostTypes/SwiPetitionPostType.php:77
 msgid "All Petitions"
-msgstr ""
+msgstr "Alle petities"
 
 #: src/php/PostTypes/SwiPetitionPostType.php:78
 msgid "Add New Petition"
@@ -76,7 +75,7 @@ msgstr ""
 
 #: src/php/PostTypes/SwiPetitionPostType.php:80
 msgid "New Petition"
-msgstr ""
+msgstr "Nieuwe petitie"
 
 #: src/php/PostTypes/SwiPetitionPostType.php:81
 msgid "Edit Petition"
@@ -199,84 +198,84 @@ msgstr ""
 
 #: src/php/PublicArea/SwiPublicArea.php:67
 msgid "You're not allowed to do this."
-msgstr ""
+msgstr "Deze handeling is niet toegestaan."
 
 #: src/php/PublicArea/SwiPublicArea.php:73
 msgid "You already signed the petition!"
-msgstr ""
+msgstr "Je hebt de petitie al ondertekend!"
 
 #: src/php/PublicArea/SwiPublicArea.php:79
 msgid "We're missing some data..."
-msgstr ""
+msgstr "We kregen onvoldoende data..."
 
 #: src/php/PublicArea/SwiPublicArea.php:85
 msgid "This zip code is not allowed."
-msgstr ""
+msgstr "Deze postcode is niet toegestaan."
 
 #: src/php/PublicArea/SwiPublicArea.php:95
 msgid "We could not save your signature, please try again later."
-msgstr ""
+msgstr "De data kon niet worden gesaved. Probeer later opnieuw."
 
 #: /src/js/admin/index.js:1
 msgid "Counter Block"
-msgstr ""
+msgstr "Teller block"
 
 #: /src/js/admin/index.js:1
 msgid "Counter for Petition!"
-msgstr ""
+msgstr "Teller voor Petition!"
 
 #: /src/js/admin/index.js:1
 msgid "Petition! Settings"
-msgstr ""
+msgstr "Petition! instellingen"
 
 #: /src/js/admin/index.js:1
 msgid "Expected number of signatures"
-msgstr ""
+msgstr "Verwacht aantal handtekeningen"
 
 #: /src/js/admin/index.js:1
 msgid "Petition! form fields"
-msgstr ""
+msgstr "Formuliervelden voor Petition!"
 
 #: /src/js/admin/index.js:1
 msgid "First Name"
-msgstr ""
+msgstr "Voornaam"
 
 #: /src/js/admin/index.js:1
 msgid "Last Name"
-msgstr ""
+msgstr "Familienaam"
 
 #: /src/js/admin/index.js:1
 msgid "Email"
-msgstr ""
+msgstr "E-mail"
 
 #: /src/js/admin/index.js:1
 msgid "Zip Code"
-msgstr ""
+msgstr "Postcode"
 
 #: /src/js/admin/index.js:1
 msgid "Zip Code Settings"
-msgstr ""
+msgstr "Postcode instellingen"
 
 #: /src/js/admin/index.js:1
 msgid "Allowed zip code pattern"
-msgstr ""
+msgstr "Toegestaan postcode formaat"
 
 #: /src/js/admin/index.js:1
 msgid "Allowed zip codes"
-msgstr ""
+msgstr "Toegestane postcodes"
 
 #: /src/js/admin/index.js:1
 msgid "Zip codes separated by commas"
-msgstr ""
+msgstr "Postcodes met kommas"
 
 #: /src/js/admin/index.js:1
 msgid "Sign the Petition"
-msgstr ""
+msgstr "Steun ons"
 
 #: /src/js/admin/index.js:1
 msgid "Form Block"
-msgstr ""
+msgstr "Formulier block"
 
 #: /src/js/admin/index.js:1
 msgid "Input fields for Petition!"
-msgstr ""
+msgstr "Inputvelden voor Petition!"

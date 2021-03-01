@@ -15,9 +15,6 @@
     ],
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "require": {
-        "phpunit/phpunit": "^9.5"
-    },
     "autoload": {
         "psr-4": {
             "Dotburo\\" : "src/php/"

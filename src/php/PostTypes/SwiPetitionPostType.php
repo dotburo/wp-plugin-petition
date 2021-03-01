@@ -2,8 +2,6 @@
 
 namespace Dotburo\PostTypes;
 
-use Dotburo\SwiPetition;
-
 class SwiPetitionPostType extends SwiPostType {
 
 	/** @var string */
@@ -29,16 +27,22 @@ class SwiPetitionPostType extends SwiPostType {
      * @return void
      */
     protected function registerPostMeta() {
-        register_post_meta( static::TYPE, 'swi_petition_allowed_zips', [
+        register_post_meta( '', 'swi_petition_allowed_zips', [
             'show_in_rest' => true,
             'single' => true,
             'type' => 'string',
         ] );
 
-        register_post_meta( static::TYPE, 'swi_petition_zip_pattern', [
+        register_post_meta( '', 'swi_petition_zip_pattern', [
             'show_in_rest' => true,
             'single' => true,
             'type' => 'string',
+        ] );
+
+        register_post_meta( '', 'swi_petition_goal', [
+            'show_in_rest' => true,
+            'single' => true,
+            'type' => 'number',
         ] );
     }
 
@@ -49,7 +53,10 @@ class SwiPetitionPostType extends SwiPostType {
     protected function registerBlockTemplate() {
         $post_type_object = get_post_type_object( static::TYPE );
         $post_type_object->template = [
-            [ 'create-block/starter-block' ]
+            [
+                'swi-petition/form-block',
+                'swi-petition/counter-block',
+            ]
         ];
     }
 
@@ -58,25 +65,24 @@ class SwiPetitionPostType extends SwiPostType {
      * @return void
      */
     protected function registerPostType () {
-        $textDomain = SwiPetition::TEXT_DOMAIN;
 
         $labels = [
-            'name'                  => _x( 'Petitions', 'Post Type General Name', $textDomain ),
-            'singular_name'         => _x( 'Petition', 'Post Type Singular Name', $textDomain ),
-            'menu_name'             => __( 'Petitions', $textDomain ),
-            'name_admin_bar'        => __( 'Petition', $textDomain ),
-            'archives'              => __( 'Petition Archives', $textDomain ),
-            'attributes'            => __( 'Petition Attributes', $textDomain ),
-            'parent_item_colon'     => __( 'Parent Petition:', $textDomain ),
-            'all_items'             => __( 'All Petitions', $textDomain ),
-            'add_new_item'          => __( 'Add New Petition', $textDomain ),
-            'add_new'               => __( 'Add New', $textDomain ),
-            'new_item'              => __( 'New Petition', $textDomain ),
-            'edit_item'             => __( 'Edit Petition', $textDomain ),
-            'update_item'           => __( 'Update Petition', $textDomain ),
-            'view_item'             => __( 'View Petition', $textDomain ),
-            'view_items'            => __( 'View Petitions', $textDomain ),
-            'search_items'          => __( 'Search Petition', $textDomain ),
+            'name'                  => _x( 'Petitions', 'Post Type General Name', 'swi-petition' ),
+            'singular_name'         => _x( 'Petition', 'Post Type Singular Name', 'swi-petition' ),
+            'menu_name'             => __( 'Petitions', 'swi-petition' ),
+            'name_admin_bar'        => __( 'Petition', 'swi-petition' ),
+            'archives'              => __( 'Petition Archives', 'swi-petition' ),
+            'attributes'            => __( 'Petition Attributes', 'swi-petition' ),
+            'parent_item_colon'     => __( 'Parent Petition:', 'swi-petition' ),
+            'all_items'             => __( 'All Petitions', 'swi-petition' ),
+            'add_new_item'          => __( 'Add New Petition', 'swi-petition' ),
+            'add_new'               => __( 'Add New' ),
+            'new_item'              => __( 'New Petition', 'swi-petition' ),
+            'edit_item'             => __( 'Edit Petition', 'swi-petition' ),
+            'update_item'           => __( 'Update Petition', 'swi-petition' ),
+            'view_item'             => __( 'View Petition', 'swi-petition' ),
+            'view_items'            => __( 'View Petitions', 'swi-petition' ),
+            'search_items'          => __( 'Search Petition', 'swi-petition' ),
             'not_found'             => __( 'Not found' ),
             'not_found_in_trash'    => __( 'Not found in Trash' ),
             'featured_image'        => __( 'Featured Image' ),
@@ -84,14 +90,14 @@ class SwiPetitionPostType extends SwiPostType {
             'remove_featured_image' => __( 'Remove featured image' ),
             'use_featured_image'    => __( 'Use as featured image' ),
             'insert_into_item'      => __( 'Insert into item' ),
-            'uploaded_to_this_item' => __( 'Uploaded to this petition', $textDomain ),
-            'items_list'            => __( 'Petitions list', $textDomain ),
-            'items_list_navigation' => __( 'Petitions list navigation', $textDomain ),
-            'filter_items_list'     => __( 'Filter Petition list', $textDomain ),
+            'uploaded_to_this_item' => __( 'Uploaded to this petition', 'swi-petition' ),
+            'items_list'            => __( 'Petitions list', 'swi-petition' ),
+            'items_list_navigation' => __( 'Petitions list navigation', 'swi-petition' ),
+            'filter_items_list'     => __( 'Filter Petition list', 'swi-petition' ),
         ];
         $args = [
-            'label'                 => __( 'Petition', $textDomain ),
-            'description'           => __( 'Petition post type', $textDomain ),
+            'label'                 => __( 'Petition', 'swi-petition' ),
+            'description'           => __( 'Petition post type', 'swi-petition' ),
             'labels'                => $labels,
             'supports'              => [ 'title', 'editor', 'thumbnail', 'custom-fields' ],
             'hierarchical'          => false,

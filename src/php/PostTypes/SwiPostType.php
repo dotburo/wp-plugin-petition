@@ -6,20 +6,20 @@ use Dotburo\SwiHookLoader;
 
 abstract class SwiPostType {
 
-	/** @var string */
-	const TYPE = 'post';
+    /** @var string */
+    const TYPE = 'post';
 
     /** @var SwiHookLoader */
     protected $loader;
 
-	/** @var array */
+    /** @var array */
     protected $meta = [];
 
     /**
-	 * @return mixed
-	 * @return void
-	 */
-	abstract public function init();
+     * @return mixed
+     * @return void
+     */
+    abstract public function init();
 
     /**
      * @return void
@@ -36,47 +36,55 @@ abstract class SwiPostType {
      *
      * @param SwiHookLoader $loader
      */
-	public function __construct(SwiHookLoader $loader) {
+    public function __construct( SwiHookLoader $loader ) {
 
         $this->loader = $loader;
 
         $this->loader->add_action( 'init', $this, 'init' );
 
-        if (is_admin()) {
+        if ( is_admin() ) {
             $this->registerAdminHooks();
         } else {
             $this->registerPublicHooks();
         }
     }
 
-    public static function getPostIds(string $keyBy = '') {
-        $posts = get_posts([
-            'post_type' => static::TYPE,
-            'numberposts' => -1,
-        ]);
+    /**
+     * WPML support: attempt to return the translated post id.
+     *
+     * @param int $postId
+     *
+     * @return int
+     */
+    public static function resolveTranslatedPostId( int $postId ): int {
+        if ( defined( 'ICL_LANGUAGE_CODE' ) ) {
+            $defaultLang = apply_filters( 'wpml_default_language', null );
 
-        if ($keyBy) {
-            $posts = array_column($posts, null, $keyBy);
+            return apply_filters( 'wpml_object_id', $postId, static::TYPE, true, $defaultLang );
         }
 
-        return array_map(function ($post) {
-            return $post->ID;
-        }, $posts);
+        return $postId;
     }
 
-	/**
-	 * @param int $id
-	 * @return array
-	 */
-	public function getMeta( int $id ): array {
-		$meta = (array) get_metadata( 'post', $id );
+    /**
+     * Return all post ids with a chosen key.
+     *
+     * @param string $keyBy
+     *
+     * @return array
+     */
+    public static function getPostIds( string $keyBy = '' ): array {
+        $posts = get_posts( [
+            'post_type'   => static::TYPE,
+            'numberposts' => - 1,
+        ] );
 
-		foreach ( $meta as $k => $v ) {
-			$meta[ $k ] = $v[0];
-		}
+        if ( $keyBy ) {
+            $posts = array_column( $posts, null, $keyBy );
+        }
 
-		//$meta['permalink'] = get_permalink($id);
-
-		return $meta;
-	}
+        return array_map( function ( $post ) {
+            return $post->ID;
+        }, $posts );
+    }
 }

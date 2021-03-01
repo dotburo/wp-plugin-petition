@@ -6,6 +6,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/swi-petition\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -37,30 +38,30 @@ msgstr "https://dotburo.org"
 #: src/php/PostTypes/SwiPetitionPostType.php:70
 msgctxt "Post Type General Name"
 msgid "Petitions"
-msgstr ""
+msgstr "Pétitions"
 
 #: src/php/PostTypes/SwiPetitionPostType.php:71
 msgctxt "Post Type Singular Name"
 msgid "Petition"
-msgstr ""
+msgstr "Pétition"
 
 #: src/php/PostTypes/SwiPetitionPostType.php:72
 msgid "Petitions"
-msgstr ""
+msgstr "Pétitions"
 
 #: src/php/PostTypes/SwiPetitionPostType.php:73
 #: src/php/PostTypes/SwiPetitionPostType.php:99
 #: src/php/PostTypes/SwiSignatoryPostType.php:43
 msgid "Petition"
-msgstr ""
+msgstr "Pétition"
 
 #: src/php/PostTypes/SwiPetitionPostType.php:74
 msgid "Petition Archives"
-msgstr ""
+msgstr "Archive des pétitions"
 
 #: src/php/PostTypes/SwiPetitionPostType.php:75
 msgid "Petition Attributes"
-msgstr ""
+msgstr "Attributs des pétitions"
 
 #: src/php/PostTypes/SwiPetitionPostType.php:76
 msgid "Parent Petition:"
@@ -68,7 +69,7 @@ msgstr ""
 
 #: src/php/PostTypes/SwiPetitionPostType.php:77
 msgid "All Petitions"
-msgstr ""
+msgstr "Toutes les pétitions"
 
 #: src/php/PostTypes/SwiPetitionPostType.php:78
 msgid "Add New Petition"
@@ -199,84 +200,84 @@ msgstr ""
 
 #: src/php/PublicArea/SwiPublicArea.php:67
 msgid "You're not allowed to do this."
-msgstr ""
+msgstr "Cette action n'est pas autorisée."
 
 #: src/php/PublicArea/SwiPublicArea.php:73
 msgid "You already signed the petition!"
-msgstr ""
+msgstr "Vous avez déjà signé la pétition!"
 
 #: src/php/PublicArea/SwiPublicArea.php:79
 msgid "We're missing some data..."
-msgstr ""
+msgstr "Les données sont insuffisantes..."
 
 #: src/php/PublicArea/SwiPublicArea.php:85
 msgid "This zip code is not allowed."
-msgstr ""
+msgstr "Ce code postal n'est pas autorisé."
 
 #: src/php/PublicArea/SwiPublicArea.php:95
 msgid "We could not save your signature, please try again later."
-msgstr ""
+msgstr "Nous n'avons pas pu sauvegarder votre signature, réessayer plus tard."
 
 #: /src/js/admin/index.js:1
 msgid "Counter Block"
-msgstr ""
+msgstr "Bloc counteur"
 
 #: /src/js/admin/index.js:1
 msgid "Counter for Petition!"
-msgstr ""
+msgstr "Counter pour Petition!"
 
 #: /src/js/admin/index.js:1
 msgid "Petition! Settings"
-msgstr ""
+msgstr "Réglages pour Petition!"
 
 #: /src/js/admin/index.js:1
 msgid "Expected number of signatures"
-msgstr ""
+msgstr "Nombre de signataires attendu"
 
 #: /src/js/admin/index.js:1
 msgid "Petition! form fields"
-msgstr ""
+msgstr "Champs du formulaire"
 
 #: /src/js/admin/index.js:1
 msgid "First Name"
-msgstr ""
+msgstr "Prénom"
 
 #: /src/js/admin/index.js:1
 msgid "Last Name"
-msgstr ""
+msgstr "Nom de famille"
 
 #: /src/js/admin/index.js:1
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 #: /src/js/admin/index.js:1
 msgid "Zip Code"
-msgstr ""
+msgstr "Code postal"
 
 #: /src/js/admin/index.js:1
 msgid "Zip Code Settings"
-msgstr ""
+msgstr "Réglages du code postal"
 
 #: /src/js/admin/index.js:1
 msgid "Allowed zip code pattern"
-msgstr ""
+msgstr "Format du code postal"
 
 #: /src/js/admin/index.js:1
 msgid "Allowed zip codes"
-msgstr ""
+msgstr "Codes postaux autorisés"
 
 #: /src/js/admin/index.js:1
 msgid "Zip codes separated by commas"
-msgstr ""
+msgstr "Codes postaux séparés par des virgules"
 
 #: /src/js/admin/index.js:1
 msgid "Sign the Petition"
-msgstr ""
+msgstr "Soutenez-nous!"
 
 #: /src/js/admin/index.js:1
 msgid "Form Block"
-msgstr ""
+msgstr "Bloc formulaire"
 
 #: /src/js/admin/index.js:1
 msgid "Input fields for Petition!"
-msgstr ""
+msgstr "Champs pour Petition!"

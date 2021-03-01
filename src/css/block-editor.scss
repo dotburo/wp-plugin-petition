@@ -1,0 +1,23 @@
+
+.swi-petition-counter {
+
+    position: relative;
+    text-align: center;
+
+    .swi-petition-counter-number {
+        position: absolute; top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff;
+        font-weight: bold;
+    }
+
+    svg {
+        width: 140px; height: 140px;
+        transform: rotate(-90deg);
+        fill: none;
+        stroke: #fff;
+        stroke-width: 10;
+        stroke-dasharray: 260px;
+        stroke-dashoffset: 0;
+    }
+}

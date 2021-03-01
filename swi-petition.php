@@ -8,19 +8,19 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              https://dotburo.org
+ * @link              https://github.com/dotburo/wp-plugin-petititon
  * @since             1.0.0
  * @package           Swi_Petition
  *
  * @wordpress-plugin
  * Plugin Name:       Petition!
  * Plugin URI:        https://github.com/dotburo/wp-plugin-petititon
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:       Create and manage petitions in WordPress.
  * Version:           1.0.0
  * Author:            dotburo
  * Author URI:        https://dotburo.org
- * License:           GPL-2.0+
- * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ * License:           GPL-3.0+
+ * License URI:       http://www.gnu.org/licenses/gpl-3.0.txt
  * Text Domain:       swi-petition
  * Domain Path:       /languages
  */

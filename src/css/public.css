@@ -1,0 +1,28 @@
+
+.swi-counter {
+    position: relative;
+    text-align: center;
+}
+.swi-counter-number {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-weight: bold;
+}
+.swi-counter svg {
+    width: 220px; height: 220px;
+    transform: rotate(-90deg);
+}
+
+
+.entry-content .swi-petition-form label {
+    display: none;
+}
+.swi-petition-form input {
+    width: 100%;
+    margin-bottom: 1.5em !important;
+}
+
+.swi-petition-form input.is-invalid {
+    border-color: red;
+}
