@@ -103,7 +103,7 @@ class SwiPublicArea extends SwiArea {
             SwiPetition::PLUGIN_NAME,
             plugins_url( 'public.css', $file ),
             [],
-            filemtime( $file ),
+            filemtime( $file )
         );
 
     }
