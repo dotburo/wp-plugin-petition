@@ -29,24 +29,36 @@ class SwiAdminPostFilter {
         }
     }
 
+    /**
+     * Update WP's query to filter by meta values.
+     *
+     * @param $query
+     *
+     * @return void
+     */
     public function parseQuery( $query ){
         global $pagenow;
 
-        if ( $pagenow ==='edit.php' && !empty($_GET['ADMIN_FILTER_FIELD_VALUE'])) {
-            //var_dump($query);
-            //exit();
-            $query->query_vars['meta_key'] = 'n_de_ldition';
-            $query->query_vars['meta_value'] = $_GET['ADMIN_FILTER_FIELD_VALUE'];
+        if ( $pagenow ==='edit.php' && !empty($_GET['swi_petition'])) {
+            $query->query_vars['meta_key'] = 'swi_signatory_petition';
+            $query->query_vars['meta_value'] = $_GET['swi_petition'];
         }
     }
 
-    protected function view( $values ) {
+    /**
+     * HTML for the filter.
+     *
+     * @param $options
+     *
+     * @return void
+     */
+    protected function view( $options ) {
         ?>
-        <select name="ADMIN_FILTER_FIELD_VALUE">
-            <option value=""><?php _e( 'Filter By ', 'wose45436' ); ?></option>
+        <select name="swi_petition">
+            <option value=""><?php _e( 'Filter By ', 'swi-petition' ); ?></option>
             <?php
-            $current_v = isset( $_GET['ADMIN_FILTER_FIELD_VALUE'] ) ? $_GET['ADMIN_FILTER_FIELD_VALUE'] : '';
-            foreach ( $values as $label => $value ) {
+            $current_v = isset( $_GET['swi_petition'] ) ? $_GET['swi_petition'] : '';
+            foreach ( $options as $label => $value ) {
                 printf
                 (
                     '<option value="%s"%s>%s</option>',
