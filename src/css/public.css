@@ -22,3 +22,51 @@
 .swi-petition-form input.is-invalid {
     border-color: red;
 }
+
+
+/*
+   Checkbox input as a switch
+   ---------------------------------------------------------- */
+
+.switch {
+    --width: 60px;
+    --height: 34px;
+    --gutter: 4px;
+    --dot-width: calc(var(--height) - (var(--gutter) * 2));
+    --dot-color: #fff;
+    --color-on: #2196F3;
+    --color-off: #ccc;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width: var(--width);
+    height: var(--height);
+    cursor: pointer;
+}
+.switch input {
+    display: none;
+}
+.switch i {
+    display: block;
+    height: 100%;
+    background-color: var(--color-off);
+    border-radius: var(--height);
+    transition: .2s;
+}
+.switch i:before {
+    position: absolute;
+    left: var(--gutter);
+    bottom: var(--gutter);
+    content: "";
+    width: var(--dot-width);
+    height: var(--dot-width);
+    border-radius: var(--dot-width);
+    background: var(--dot-color);
+    transition: .2s;
+}
+.switch input:checked + i {
+    background-color: var(--color-on);
+}
+.switch input:checked + i:before {
+    transform: translateX(calc(var(--width) - (var(--gutter) * 2) - var(--dot-width)));
+}

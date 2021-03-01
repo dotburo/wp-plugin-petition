@@ -40,8 +40,11 @@ export default function save( { attributes, className } ) {
                 ) }
                 { attributes.ageField && (
                     <div className='swi-petition-age form-group'>
-                        <label className='swi-petition-age-label'>
-                            <input type='checkbox' name='swi_petition_age' />
+                        <label>
+                            <label className='swi-petition-age-label switch'>
+                                <input type='checkbox' name='swi_petition_age' autoComplete={ 'off' }/>
+                                <i/>
+                            </label>
                             <span>{ attributes.ageFieldLabel }</span>
                         </label>
                     </div>
