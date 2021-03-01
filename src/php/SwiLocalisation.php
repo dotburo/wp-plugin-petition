@@ -51,7 +51,7 @@ class SwiLocalisation {
 		load_plugin_textdomain(
 			'swi-petition',
 			false,
-			$this->loader->getPluginPath('languages')
+            basename( $this->loader->getPluginPath() ). '/languages'
 		);
 
 	}
