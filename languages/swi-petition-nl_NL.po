@@ -295,3 +295,7 @@ msgstr "Het formaat van de postcode is verkeerd."
 #: /src/js/admin/index.js:1
 msgid "Please confirm your age."
 msgstr "Bevestig uw leeftijd."
+
+#: /src/js/admin/index.js:1
+msgid "Redirect after submission"
+msgstr "Open pagina na bevestiging"

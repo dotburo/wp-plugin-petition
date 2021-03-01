@@ -297,3 +297,7 @@ msgstr "Le code postale n'est pas correct."
 #: /src/js/admin/index.js:1
 msgid "Please confirm your age."
 msgstr "Veuillez confirmez votre age."
+
+#: /src/js/admin/index.js:1
+msgid "Redirect after submission"
+msgstr "Redirection après envoi"

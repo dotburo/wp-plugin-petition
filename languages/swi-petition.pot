@@ -296,3 +296,7 @@ msgstr ""
 #: /src/js/admin/index.js:1
 msgid "Please confirm your age."
 msgstr ""
+
+#: /src/js/admin/index.js:1
+msgid "Redirect after submission"
+msgstr ""

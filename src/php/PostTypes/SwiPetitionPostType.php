@@ -44,6 +44,12 @@ class SwiPetitionPostType extends SwiPostType {
             'single' => true,
             'type' => 'number',
         ] );
+
+        register_post_meta( '', 'swi_petition_redirect', [
+            'show_in_rest' => true,
+            'single' => true,
+            'type' => 'string',
+        ] );
     }
 
     /**

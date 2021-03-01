@@ -52,12 +52,20 @@ export default class Form {
                 if (json.data && json.data.error) {
                     this.showErrorMsg(null, [json.data.error], true)
                 } else {
-                    //this.showSuccessMsg();
+                    this.onSuccess();
                 }
             })
             .catch(error => {
                 this.showErrorMsg(null, [error.message], true)
             })
+    }
+
+    onSuccess() {
+        if (window.swiPetition.redirect) {
+            window.location = window.swiPetition.redirect
+        } else {
+            // todo
+        }
     }
 
     validateFields(useGlobalFeedback = true) {

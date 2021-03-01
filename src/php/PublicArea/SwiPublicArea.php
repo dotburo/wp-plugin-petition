@@ -138,7 +138,8 @@ class SwiPublicArea extends SwiArea {
                 'nonce'  => wp_create_nonce( 'swi_petition_submit' ),
                 'id'     => $post ? SwiPostType::resolveTranslatedPostId ($post->ID ) : 0,
                 'goal'   => $post ? (int)get_post_meta( $post->ID, 'swi_petition_goal', true) : 0,
-                'count'  => $post ? SwiSignatoryPostType::countPosts($post->ID, 'private') : 0
+                'count'  => $post ? SwiSignatoryPostType::countPosts($post->ID, 'private') : 0,
+                'redirect' => $post ? esc_url(get_post_meta( $post->ID, 'swi_petition_redirect', true)) : 0,
             ]
         );
 
