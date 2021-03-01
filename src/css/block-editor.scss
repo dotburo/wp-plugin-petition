@@ -7,7 +7,7 @@
     .swi-petition-counter-number {
         position: absolute; top: 50%; left: 50%;
         transform: translate(-50%, -50%);
-        color: #fff;
+        color: #000;
         font-weight: bold;
     }
 
@@ -15,7 +15,7 @@
         width: 140px; height: 140px;
         transform: rotate(-90deg);
         fill: none;
-        stroke: #fff;
+        stroke: #000;
         stroke-width: 10;
         stroke-dasharray: 260px;
         stroke-dashoffset: 0;
