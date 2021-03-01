@@ -49,7 +49,7 @@ export default class Form {
                 return response.json()
             })
             .then(json => {
-                if (json.data.error) {
+                if (json.data && json.data.error) {
                     this.showErrorMsg(null, [json.data.error], true)
                 } else {
                     //this.showSuccessMsg();
