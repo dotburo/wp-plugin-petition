@@ -21,3 +21,15 @@
         stroke-dashoffset: 0;
     }
 }
+
+.swi-petition-age {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 1.5em 0 1em 0;
+
+    & > div:last-child {
+        flex: 1;
+    }
+}

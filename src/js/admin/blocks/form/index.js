@@ -37,6 +37,16 @@ export function register() {
                 source: 'html',
                 selector: '.swi-petition-zip'
             },
+            ageField: {
+                type: 'string',
+                source: 'html',
+                selector: '.swi-petition-age'
+            },
+            ageFieldLabel: {
+                type: 'string',
+                source: 'text',
+                selector: '.swi-petition-age-label',
+            }
         },
         edit: Edit,
         save,

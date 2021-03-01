@@ -38,6 +38,14 @@ export default function save( { attributes, className } ) {
                         <input type='text' name='swi_petition_zip' placeholder={ __('1000', 'swi-petition' ) } />
                     </div>
                 ) }
+                { attributes.ageField && (
+                    <div className='swi-petition-age form-group'>
+                        <label className='swi-petition-age-label'>
+                            <input type='checkbox' name='swi_petition_age' />
+                            <span>{ attributes.ageFieldLabel }</span>
+                        </label>
+                    </div>
+                ) }
                 <div className="alert alert-warning invalid-feedback" role="alert" style={ {display: 'none'} }/>
                 <div className="btn-group" role="group">
                     <button className={ 'btn btn-primary' } type='submit'>{ __('Sign the Petition', 'swi-petition' ) }</button>

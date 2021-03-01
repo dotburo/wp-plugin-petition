@@ -40,6 +40,15 @@ export default function Edit( props ) {
                         onChange={ val => setMeta( { ...meta, 'swi_petition_goal': val } ) }
                     />
                 </PanelRow>
+                <PanelRow>
+                    <TextControl
+                        label={ __( 'Redirect after submission', 'swi-petition' ) }
+                        placeholder={ 'URL' }
+                        value={ meta.swi_petition_redirect }
+                        type='url'
+                        onChange={ val => setMeta( { ...meta, 'swi_petition_redirect': val } ) }
+                    />
+                </PanelRow>
             </PanelBody>
             <PanelBody
                 title={ __("Petition! form fields", 'swi-petition' ) }
@@ -71,6 +80,13 @@ export default function Edit( props ) {
                         label={ __('Zip Code', 'swi-petition' ) }
                         checked={ attributes.zipField }
                         onChange={ val => setAttributes({ zipField: val }) }
+                    />
+                </PanelRow>
+                <PanelRow>
+                    <ToggleControl
+                        label={ __('Age confirmation', 'swi-petition' ) }
+                        checked={ attributes.ageField }
+                        onChange={ val => setAttributes({ ageField: val }) }
                     />
                 </PanelRow>
             </PanelBody>
@@ -105,6 +121,7 @@ export default function Edit( props ) {
                         <TextControl
                             label={ __('First Name', 'swi-petition' ) }
                             type='text'
+                            disabled
                             name='swi_petition_fname'
                         />
                     </div>
@@ -113,6 +130,7 @@ export default function Edit( props ) {
                     <TextControl
                         label={ __('Last Name', 'swi-petition' ) }
                         type='text'
+                        disabled
                         className={ className }
                     />
                 ) }
@@ -120,6 +138,7 @@ export default function Edit( props ) {
                     <TextControl
                         label={ __('Email', 'swi-petition' ) }
                         type='email'
+                        disabled
                         className={ className }
                     />
                 ) }
@@ -127,8 +146,20 @@ export default function Edit( props ) {
                     <TextControl
                         label={ __('Zip Code', 'swi-petition' ) }
                         type='number'
+                        disabled
                         className={ className }
                     />
+                ) }
+                { attributes.ageField && (
+                    <div className={ 'swi-petition-age' } >
+                        <ToggleControl checked={ true } />
+                        <TextControl
+                            placeholder={ attributes.ageFieldLabel
+                            || __('By submitting this form I confirm being 16 or older.', 'swi-petition') }
+                            type='text'
+                            onChange={ val => setAttributes({ ageFieldLabel: val }) }
+                        />
+                    </div>
                 ) }
                 <div>
                     <button type='submit' disabled>{ __('Sign the Petition', 'swi-petition' ) }</button>

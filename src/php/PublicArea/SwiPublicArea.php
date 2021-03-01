@@ -80,6 +80,10 @@ class SwiPublicArea extends SwiArea {
             wp_send_json_error(['error' => __( 'You already signed the petition!', 'swi-petition' )], 500);
         }
 
+        if (isset($_POST['swi_petition_age']) && $_POST['swi_petition_age'] !== 'true') {
+            wp_send_json_error(['error' => __( 'Please confirm your age.', 'swi-petition' )], 500);
+        }
+
         if (isset($_POST['swi_petition_zip'])) {
             $zip = sanitize_text_field($_POST['swi_petition_zip']);
 

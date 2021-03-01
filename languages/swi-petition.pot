@@ -292,3 +292,7 @@ msgstr ""
 #: /src/js/admin/index.js:1
 msgid "The zip code format is wrong."
 msgstr ""
+
+#: /src/js/admin/index.js:1
+msgid "Please confirm your age."
+msgstr ""

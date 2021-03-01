@@ -38,4 +38,13 @@ export default {
             message: '^' + __( "The zip code format is wrong.", 'swi-petition' ),
         }
     },
+    swi_petition_age: {
+        presence: {
+            message: '^' + __( "Please confirm your age.", 'swi-petition' ),
+        },
+        inclusion: {
+            within: [true],
+            message: '^' + __( "Please confirm your age.", 'swi-petition' ),
+        }
+    },
 }

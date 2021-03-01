@@ -73,7 +73,8 @@ export default class Form {
     }
 
     validateField(field, useGlobalFeedback = false) {
-        let errors = validate({[field.name]: field.value}, {[field.name]: constraints[field.name]});
+        let value = this.getValue(field),
+            errors = validate({[field.name]: value}, {[field.name]: constraints[field.name]});
 
         if (errors && errors[field.name]) {
             return this.showFieldError(field, errors[field.name], useGlobalFeedback);
@@ -122,10 +123,20 @@ export default class Form {
         return nodeArray(el.querySelectorAll('input, textarea, select'));
     }
 
+    getValue(field) {
+        if (field.type.toLowerCase() === 'checkbox' || field.type.toLowerCase() === 'radio') {
+            return field.checked
+        }
+
+        return field.value
+    }
+
     getValues(serialise = false) {
         let values = {};
 
-        this.getFields().forEach(field => ( values[field.name] = field.value ));
+        this.getFields().forEach(field => {
+            values[field.name] = this.getValue(field)
+        });
 
         if (serialise) {
             values._ajax_nonce = window.swiPetition.nonce;

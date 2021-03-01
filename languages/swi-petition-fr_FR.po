@@ -293,3 +293,7 @@ msgstr "Votre adresse mail contient une erreur."
 #: /src/js/admin/index.js:1
 msgid "The zip code format is wrong."
 msgstr "Le code postale n'est pas correct."
+
+#: /src/js/admin/index.js:1
+msgid "Please confirm your age."
+msgstr "Veuillez confirmez votre age."

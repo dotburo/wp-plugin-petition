@@ -291,3 +291,7 @@ msgstr "Uw e-mailadres lijkt verkeerd."
 #: /src/js/admin/index.js:1
 msgid "The zip code format is wrong."
 msgstr "Het formaat van de postcode is verkeerd."
+
+#: /src/js/admin/index.js:1
+msgid "Please confirm your age."
+msgstr "Bevestig uw leeftijd."
