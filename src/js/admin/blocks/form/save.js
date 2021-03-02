@@ -29,7 +29,7 @@ export default function save( { attributes, className } ) {
                 { attributes.emailField && (
                     <div className='swi-petition-email form-group'>
                         <label>{ __('Email', 'swi-petition' ) }</label>
-                        <input type='email' name='swi_petition_email' placeholder={ __('email@example.org', 'swi-petition' ) } />
+                        <input type='email' name='swi_petition_email' placeholder={ __('mail@example.org', 'swi-petition' ) } />
                     </div>
                 ) }
                 { attributes.zipField && (

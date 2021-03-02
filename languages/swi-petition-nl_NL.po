@@ -1,3 +1,5 @@
+# Copyright (C) 2021 dotburo
+# This file is distributed under the same license as the Petition! plugin.
 msgid ""
 msgstr ""
 "Project-Id-Version: Petition! 1.0.0\n"
@@ -61,17 +63,13 @@ msgstr "Petitie-archiven"
 msgid "Petition Attributes"
 msgstr "Petitie-attributen"
 
-#: src/php/PostTypes/SwiPetitionPostType.php:76
-msgid "Parent Petition:"
-msgstr ""
-
 #: src/php/PostTypes/SwiPetitionPostType.php:77
 msgid "All Petitions"
 msgstr "Alle petities"
 
 #: src/php/PostTypes/SwiPetitionPostType.php:78
 msgid "Add New Petition"
-msgstr ""
+msgstr "Nieuwe petitie toevoegen"
 
 #: src/php/PostTypes/SwiPetitionPostType.php:80
 msgid "New Petition"
@@ -79,39 +77,39 @@ msgstr "Nieuwe petitie"
 
 #: src/php/PostTypes/SwiPetitionPostType.php:81
 msgid "Edit Petition"
-msgstr ""
+msgstr "Petitie bewerken"
 
 #: src/php/PostTypes/SwiPetitionPostType.php:82
 msgid "Update Petition"
-msgstr ""
+msgstr "Update de petitie"
 
 #: src/php/PostTypes/SwiPetitionPostType.php:83
 msgid "View Petition"
-msgstr ""
+msgstr "Bekijk de petitie"
 
 #: src/php/PostTypes/SwiPetitionPostType.php:84
 msgid "View Petitions"
-msgstr ""
+msgstr "Bekijk de petities"
 
 #: src/php/PostTypes/SwiPetitionPostType.php:85
 msgid "Search Petition"
-msgstr ""
+msgstr "Zoek petitie"
 
 #: src/php/PostTypes/SwiPetitionPostType.php:93
 msgid "Uploaded to this petition"
-msgstr ""
+msgstr "Upgeload naar deze petitie"
 
 #: src/php/PostTypes/SwiPetitionPostType.php:94
 msgid "Petitions list"
-msgstr ""
+msgstr "Petitielijst"
 
 #: src/php/PostTypes/SwiPetitionPostType.php:95
 msgid "Petitions list navigation"
-msgstr ""
+msgstr "Navigatie petitielijst"
 
 #: src/php/PostTypes/SwiPetitionPostType.php:96
 msgid "Filter Petition list"
-msgstr ""
+msgstr "Filter de petities"
 
 #: src/php/PostTypes/SwiPetitionPostType.php:100
 msgid "Petition post type"
@@ -120,81 +118,45 @@ msgstr ""
 #: src/php/PostTypes/SwiSignatoryPostType.php:173
 msgctxt "Post Type General Name"
 msgid "Signatories"
-msgstr ""
+msgstr "Ondertekenaars"
 
 #: src/php/PostTypes/SwiSignatoryPostType.php:174
 msgctxt "Post Type Singular Name"
 msgid "Signatory"
-msgstr ""
+msgstr "Ondertekenaar"
 
 #: src/php/PostTypes/SwiSignatoryPostType.php:175
 msgid "Signatories"
-msgstr ""
+msgstr "Ondertekenaars"
 
 #: src/php/PostTypes/SwiSignatoryPostType.php:176
 #: src/php/PostTypes/SwiSignatoryPostType.php:195
 msgid "Signatory"
-msgstr ""
-
-#: src/php/PostTypes/SwiSignatoryPostType.php:177
-msgid "Signatory Archives"
-msgstr ""
-
-#: src/php/PostTypes/SwiSignatoryPostType.php:178
-msgid "Signatory Attributes"
-msgstr ""
-
-#: src/php/PostTypes/SwiSignatoryPostType.php:179
-msgid "Parent Signatory:"
-msgstr ""
+msgstr "Ondertekenaar"
 
 #: src/php/PostTypes/SwiSignatoryPostType.php:180
 msgid "All Signatories"
-msgstr ""
-
-#: src/php/PostTypes/SwiSignatoryPostType.php:181
-msgid "Add New Signatory"
-msgstr ""
-
-#: src/php/PostTypes/SwiSignatoryPostType.php:183
-msgid "New Signatory"
-msgstr ""
-
-#: src/php/PostTypes/SwiSignatoryPostType.php:184
-msgid "Edit Signatory"
-msgstr ""
-
-#: src/php/PostTypes/SwiSignatoryPostType.php:185
-msgid "Update Signatory"
-msgstr ""
-
-#: src/php/PostTypes/SwiSignatoryPostType.php:186
-msgid "View Signatory"
-msgstr ""
+msgstr "Alle ondertekenaars"
 
 #: src/php/PostTypes/SwiSignatoryPostType.php:187
 msgid "View Signatories"
-msgstr ""
-
-#: src/php/PostTypes/SwiSignatoryPostType.php:188
-msgid "Search Signatories"
-msgstr ""
+msgstr "Bekijk de ondertekenaars"
 
 #: src/php/PostTypes/SwiSignatoryPostType.php:189
 msgid "Signatories list"
-msgstr ""
+msgstr "Lijst van de ondertekenaars"
 
 #: src/php/PostTypes/SwiSignatoryPostType.php:190
 msgid "Signatories list navigation"
-msgstr ""
+msgstr "Navigatie voor de lijst"
 
 #: src/php/PostTypes/SwiSignatoryPostType.php:191
 msgid "Filter Signatory list"
-msgstr ""
+msgstr "Filter de ondertekenaars"
 
 #: src/php/PostTypes/SwiSignatoryPostType.php:196
-msgid "Signatory post type"
-msgstr ""
+msgid "Holds the signing data"
+msgstr "Bevat de data van de ondertekenaar"
 
 #: src/php/PublicArea/SwiPublicArea.php:67
 msgid "You're not allowed to do this."
@@ -217,8 +179,8 @@ msgid "We could not save your signature, please try again later."
 msgstr "De data kon niet worden gesaved. Probeer later opnieuw."
 
 #: /src/js/admin/index.js:1
-msgid "Counter Block"
-msgstr "Teller block"
+msgid "Petition! Gauge"
+msgstr "Petition! teller"
 
 #: /src/js/admin/index.js:1
 msgid "Counter for Petition!"
@@ -249,8 +211,16 @@ msgid "Email"
 msgstr "E-mail"
 
 #: /src/js/admin/index.js:1
+msgid "mail@example.org"
+msgstr "mail@voorbeeld.org"
+
+#: /src/js/admin/index.js:1
 msgid "Zip Code"
 msgstr "Postcode"
+
+#: /src/js/admin/index.js:1
+msgid "1000"
+msgstr "1000"
 
 #: /src/js/admin/index.js:1
 msgid "Zip Code Settings"
@@ -273,8 +243,8 @@ msgid "Sign the Petition"
 msgstr "Steun ons"
 
 #: /src/js/admin/index.js:1
-msgid "Form Block"
-msgstr "Formulier block"
+msgid "Petition! Form"
+msgstr "Petition! formulier"
 
 #: /src/js/admin/index.js:1
 msgid "Input fields for Petition!"

@@ -79,7 +79,6 @@ class SwiPetitionPostType extends SwiPostType {
             'name_admin_bar'        => __( 'Petition', 'swi-petition' ),
             'archives'              => __( 'Petition Archives', 'swi-petition' ),
             'attributes'            => __( 'Petition Attributes', 'swi-petition' ),
-            'parent_item_colon'     => __( 'Parent Petition:', 'swi-petition' ),
             'all_items'             => __( 'All Petitions', 'swi-petition' ),
             'add_new_item'          => __( 'Add New Petition', 'swi-petition' ),
             'add_new'               => __( 'Add New' ),

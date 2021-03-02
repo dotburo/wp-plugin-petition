@@ -5,9 +5,9 @@ import '../../../../css/block-editor.scss';
 export function register() {
     registerBlockType('swi-petition/counter-block', {
         apiVersion: 2,
-        title: __('Counter Block', 'swi-petition'),
+        title: __('Petition! Gauge', 'swi-petition'),
         description: __(
-            'Counter for Petition!',
+            'Gauge for Petition!',
             'swi-petition'
         ),
         category: 'widgets',

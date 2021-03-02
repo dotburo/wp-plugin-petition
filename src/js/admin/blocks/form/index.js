@@ -6,7 +6,7 @@ import save from './save';
 export function register() {
     registerBlockType('swi-petition/form-block', {
         apiVersion: 2,
-        title: __('Form Block', 'swi-petition'),
+        title: __('Petition! Form', 'swi-petition'),
         description: __(
             'Input fields for Petition!',
             'swi-petition'

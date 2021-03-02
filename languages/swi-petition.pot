@@ -62,10 +62,6 @@ msgstr ""
 msgid "Petition Attributes"
 msgstr ""
 
-#: src/php/PostTypes/SwiPetitionPostType.php:76
-msgid "Parent Petition:"
-msgstr ""
-
 #: src/php/PostTypes/SwiPetitionPostType.php:77
 msgid "All Petitions"
 msgstr ""
@@ -137,48 +133,12 @@ msgstr ""
 msgid "Signatory"
 msgstr ""
 
-#: src/php/PostTypes/SwiSignatoryPostType.php:177
-msgid "Signatory Archives"
-msgstr ""
-
-#: src/php/PostTypes/SwiSignatoryPostType.php:178
-msgid "Signatory Attributes"
-msgstr ""
-
-#: src/php/PostTypes/SwiSignatoryPostType.php:179
-msgid "Parent Signatory:"
-msgstr ""
-
 #: src/php/PostTypes/SwiSignatoryPostType.php:180
 msgid "All Signatories"
 msgstr ""
 
-#: src/php/PostTypes/SwiSignatoryPostType.php:181
-msgid "Add New Signatory"
-msgstr ""
-
-#: src/php/PostTypes/SwiSignatoryPostType.php:183
-msgid "New Signatory"
-msgstr ""
-
-#: src/php/PostTypes/SwiSignatoryPostType.php:184
-msgid "Edit Signatory"
-msgstr ""
-
-#: src/php/PostTypes/SwiSignatoryPostType.php:185
-msgid "Update Signatory"
-msgstr ""
-
-#: src/php/PostTypes/SwiSignatoryPostType.php:186
-msgid "View Signatory"
-msgstr ""
-
 #: src/php/PostTypes/SwiSignatoryPostType.php:187
 msgid "View Signatories"
-msgstr ""
-
-#: src/php/PostTypes/SwiSignatoryPostType.php:188
-msgid "Search Signatories"
 msgstr ""
 
 #: src/php/PostTypes/SwiSignatoryPostType.php:189
@@ -194,7 +154,7 @@ msgid "Filter Signatory list"
 msgstr ""
 
 #: src/php/PostTypes/SwiSignatoryPostType.php:196
-msgid "Signatory post type"
+msgid "Holds the signing data"
 msgstr ""
 
 #: src/php/PublicArea/SwiPublicArea.php:67
@@ -218,7 +178,7 @@ msgid "We could not save your signature, please try again later."
 msgstr ""
 
 #: /src/js/admin/index.js:1
-msgid "Counter Block"
+msgid "Petition! Gauge"
 msgstr ""
 
 #: /src/js/admin/index.js:1
@@ -250,7 +210,15 @@ msgid "Email"
 msgstr ""
 
 #: /src/js/admin/index.js:1
+msgid "mail@example.org"
+msgstr ""
+
+#: /src/js/admin/index.js:1
 msgid "Zip Code"
+msgstr ""
+
+#: /src/js/admin/index.js:1
+msgid "1000"
 msgstr ""
 
 #: /src/js/admin/index.js:1
@@ -274,7 +242,7 @@ msgid "Sign the Petition"
 msgstr ""
 
 #: /src/js/admin/index.js:1
-msgid "Form Block"
+msgid "Petition! Form"
 msgstr ""
 
 #: /src/js/admin/index.js:1

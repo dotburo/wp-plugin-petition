@@ -63,57 +63,53 @@ msgstr "Archive des pétitions"
 msgid "Petition Attributes"
 msgstr "Attributs des pétitions"
 
-#: src/php/PostTypes/SwiPetitionPostType.php:76
-msgid "Parent Petition:"
-msgstr ""
-
 #: src/php/PostTypes/SwiPetitionPostType.php:77
 msgid "All Petitions"
 msgstr "Toutes les pétitions"
 
 #: src/php/PostTypes/SwiPetitionPostType.php:78
 msgid "Add New Petition"
-msgstr ""
+msgstr "Ajouter une pétition"
 
 #: src/php/PostTypes/SwiPetitionPostType.php:80
 msgid "New Petition"
-msgstr ""
+msgstr "Nouvelle pétition"
 
 #: src/php/PostTypes/SwiPetitionPostType.php:81
 msgid "Edit Petition"
-msgstr ""
+msgstr "Modifier la pétition"
 
 #: src/php/PostTypes/SwiPetitionPostType.php:82
 msgid "Update Petition"
-msgstr ""
+msgstr "Mettre à jour la pétition"
 
 #: src/php/PostTypes/SwiPetitionPostType.php:83
 msgid "View Petition"
-msgstr ""
+msgstr "Consulter la pétition"
 
 #: src/php/PostTypes/SwiPetitionPostType.php:84
 msgid "View Petitions"
-msgstr ""
+msgstr "Consulter les pétitions"
 
 #: src/php/PostTypes/SwiPetitionPostType.php:85
 msgid "Search Petition"
-msgstr ""
+msgstr "Recherchez une petition"
 
 #: src/php/PostTypes/SwiPetitionPostType.php:93
 msgid "Uploaded to this petition"
-msgstr ""
+msgstr "Téléchargés vers cette pétition"
 
 #: src/php/PostTypes/SwiPetitionPostType.php:94
 msgid "Petitions list"
-msgstr ""
+msgstr "Liste des pétitions"
 
 #: src/php/PostTypes/SwiPetitionPostType.php:95
 msgid "Petitions list navigation"
-msgstr ""
+msgstr "Navigation des pétitions"
 
 #: src/php/PostTypes/SwiPetitionPostType.php:96
 msgid "Filter Petition list"
-msgstr ""
+msgstr "Filtrer les pétitions"
 
 #: src/php/PostTypes/SwiPetitionPostType.php:100
 msgid "Petition post type"
@@ -122,81 +118,45 @@ msgstr ""
 #: src/php/PostTypes/SwiSignatoryPostType.php:173
 msgctxt "Post Type General Name"
 msgid "Signatories"
-msgstr ""
+msgstr "Signataires"
 
 #: src/php/PostTypes/SwiSignatoryPostType.php:174
 msgctxt "Post Type Singular Name"
 msgid "Signatory"
-msgstr ""
+msgstr "Signataire"
 
 #: src/php/PostTypes/SwiSignatoryPostType.php:175
 msgid "Signatories"
-msgstr ""
+msgstr "Signataires"
 
 #: src/php/PostTypes/SwiSignatoryPostType.php:176
 #: src/php/PostTypes/SwiSignatoryPostType.php:195
 msgid "Signatory"
-msgstr ""
-
-#: src/php/PostTypes/SwiSignatoryPostType.php:177
-msgid "Signatory Archives"
-msgstr ""
-
-#: src/php/PostTypes/SwiSignatoryPostType.php:178
-msgid "Signatory Attributes"
-msgstr ""
-
-#: src/php/PostTypes/SwiSignatoryPostType.php:179
-msgid "Parent Signatory:"
-msgstr ""
+msgstr "Signataire"
 
 #: src/php/PostTypes/SwiSignatoryPostType.php:180
 msgid "All Signatories"
-msgstr ""
-
-#: src/php/PostTypes/SwiSignatoryPostType.php:181
-msgid "Add New Signatory"
-msgstr ""
-
-#: src/php/PostTypes/SwiSignatoryPostType.php:183
-msgid "New Signatory"
-msgstr ""
-
-#: src/php/PostTypes/SwiSignatoryPostType.php:184
-msgid "Edit Signatory"
-msgstr ""
-
-#: src/php/PostTypes/SwiSignatoryPostType.php:185
-msgid "Update Signatory"
-msgstr ""
-
-#: src/php/PostTypes/SwiSignatoryPostType.php:186
-msgid "View Signatory"
-msgstr ""
+msgstr "Tous les signataires"
 
 #: src/php/PostTypes/SwiSignatoryPostType.php:187
 msgid "View Signatories"
-msgstr ""
-
-#: src/php/PostTypes/SwiSignatoryPostType.php:188
-msgid "Search Signatories"
-msgstr ""
+msgstr "Voir les signataires"
 
 #: src/php/PostTypes/SwiSignatoryPostType.php:189
 msgid "Signatories list"
-msgstr ""
+msgstr "Liste des signataires"
 
 #: src/php/PostTypes/SwiSignatoryPostType.php:190
 msgid "Signatories list navigation"
-msgstr ""
+msgstr "Navigation de la liste des signataires"
 
 #: src/php/PostTypes/SwiSignatoryPostType.php:191
 msgid "Filter Signatory list"
-msgstr ""
+msgstr "Filtrer la listes des signataires"
 
 #: src/php/PostTypes/SwiSignatoryPostType.php:196
-msgid "Signatory post type"
-msgstr ""
+msgid "Holds the signing data"
+msgstr "Contient les données de la signature"
 
 #: src/php/PublicArea/SwiPublicArea.php:67
 msgid "You're not allowed to do this."
@@ -219,8 +179,8 @@ msgid "We could not save your signature, please try again later."
 msgstr "Nous n'avons pas pu sauvegarder votre signature, réessayer plus tard."
 
 #: /src/js/admin/index.js:1
-msgid "Counter Block"
-msgstr "Bloc counteur"
+msgid "Petition! Gauge"
+msgstr "Gauge Petition!"
 
 #: /src/js/admin/index.js:1
 msgid "Counter for Petition!"
@@ -248,11 +208,19 @@ msgstr "Nom de famille"
 
 #: /src/js/admin/index.js:1
 msgid "Email"
-msgstr "Email"
+msgstr "E-mail"
+
+#: /src/js/admin/index.js:1
+msgid "mail@example.org"
+msgstr "mail@exemple.org"
 
 #: /src/js/admin/index.js:1
 msgid "Zip Code"
 msgstr "Code postal"
+
+#: /src/js/admin/index.js:1
+msgid "1000"
+msgstr "1000"
 
 #: /src/js/admin/index.js:1
 msgid "Zip Code Settings"
@@ -275,8 +243,8 @@ msgid "Sign the Petition"
 msgstr "Soutenez-nous!"
 
 #: /src/js/admin/index.js:1
-msgid "Form Block"
-msgstr "Bloc formulaire"
+msgid "Petition! Form"
+msgstr "Formulaire Petition!"
 
 #: /src/js/admin/index.js:1
 msgid "Input fields for Petition!"
