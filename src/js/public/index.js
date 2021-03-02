@@ -4,28 +4,36 @@ import Counter from "./Counter";
 import Poller from "./Poller";
 import DynNum from "./DynNum";
 
-(function(w, d) {
+(function(w, d, config) {
     let forms = d.getElementsByClassName('swi-petition-form'),
         counters = d.getElementsByClassName('swi-petition-counter'),
-        numbers = d.getElementsByClassName('swi-petition-number'),
-        config = Object.assign(w.swiPetition, {
-            delay: 2000
-        });
+        numbers = d.getElementsByClassName('swi-petition-number');
+
+    config = Object.assign(config, {
+        delay: config.pollInterval || 5000
+    });
 
     const poller = new Poller(config);
 
-    counters = nodeArray(counters).map(el => {
+    nodeArray(counters).map(el => {
         return new Counter(poller, el);
     })
 
-    numbers = nodeArray(numbers).map(el => {
+    nodeArray(numbers).map(el => {
         return new DynNum(poller, el);
     })
 
     nodeArray(forms).forEach(form => {
         new Form(form, {
-            counters: counters
+            cb: poller.trigger.bind(poller),
+            redirect: config.redirect,
+            url: config.url,
+            include: {
+                _ajax_nonce: config.nonce,
+                action: 'swi_petition_submit',
+                swi_petition: config.id,
+            }
         });
     })
 
-})(window, document);
+})(window, document, window.swiPetition);

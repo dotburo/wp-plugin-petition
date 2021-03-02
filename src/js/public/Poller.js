@@ -11,31 +11,35 @@ export default class Poller {
         this.initialOffset = Math.max(0, this.count - 5);
         this.delay = options.delay;
 
-        this.startWithOffset();
+        this._startWithOffset();
+    }
+
+    trigger() {
+        this._getCount();
     }
 
     addCallback(fn) {
         this.callbacks.push(fn);
     }
 
-    setTimeout() {
+    _setTimeout() {
         window.setTimeout(() => {
-            this.getCount();
+            this._getCount();
         }, this.delay)
     }
 
-    startWithOffset() {
+    _startWithOffset() {
         window.setTimeout(() => {
             if (this.initialOffset <= this.count) {
-                this.runCallbacks(this.initialOffset++);
-                this.startWithOffset(this.initialOffset);
+                this._runCallbacks(this.initialOffset++);
+                this._startWithOffset(this.initialOffset);
             } else {
-                this.getCount();
+                this._getCount();
             }
         }, 500 + (Math.random(0, 1) * 1100))
     }
 
-    getCount() {
+    _getCount() {
         let url = this.options.url + '?action=swi_petition_poll&swi_petition=' + this.options.id
 
         window.fetch( url )
@@ -45,15 +49,15 @@ export default class Poller {
                 }
             })
             .then(count => {
-                this.runCallbacks(count);
-                this.setTimeout();
+                this._runCallbacks(count);
+                this._setTimeout();
             })
             .catch(error => {
                 console.log(error);
             })
     }
 
-    runCallbacks(count) {
+    _runCallbacks(count) {
         this.callbacks.forEach(fn => {
             fn(count, this.goal)
         });

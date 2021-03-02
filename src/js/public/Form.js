@@ -4,10 +4,16 @@ import constraints from "./form-rules";
 
 export default class Form {
     constructor(el, options = {}) {
-        this.selectors = {
+        this.selectors = Object.assign({
             invalidFeedback: '.invalid-feedback',
             fieldParent: '.form-group',
-        }
+        }, options.selectors || {});
+
+        this.url = options.url;
+        this.include = options.include;
+
+        this.cb = options.cb;
+        this.redirect = options.redirect;
 
         this.el = el;
         this.form = this.getForm(el);
@@ -34,7 +40,7 @@ export default class Form {
 
     submit() {
         window
-            .fetch(window.swiPetition.url, {
+            .fetch(this.url, {
                 method: 'POST',
                 body: this.getValues(true),
                 credentials: 'same-origin',
@@ -61,10 +67,11 @@ export default class Form {
     }
 
     onSuccess() {
-        if (window.swiPetition.redirect) {
-            window.location = window.swiPetition.redirect
-        } else {
-            // todo
+        if (this.cb) {
+            this.cb();
+        }
+        if (this.redirect) {
+            window.location = this.redirect
         }
     }
 
@@ -132,7 +139,9 @@ export default class Form {
     }
 
     getValue(field) {
-        if (field.type.toLowerCase() === 'checkbox' || field.type.toLowerCase() === 'radio') {
+        let fieldType = field.type.toLowerCase();
+
+        if (fieldType === 'checkbox' || fieldType === 'radio') {
             return field.checked
         }
 
@@ -147,9 +156,7 @@ export default class Form {
         });
 
         if (serialise) {
-            values._ajax_nonce = window.swiPetition.nonce;
-            values.action = 'swi_petition_submit';
-            values.swi_petition = window.swiPetition.id;
+            values = Object.assign(values, this.include);
 
             return Object.keys(values).map(k => k + '=' + values[k]).join('&')
         }
