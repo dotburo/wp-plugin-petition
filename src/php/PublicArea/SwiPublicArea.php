@@ -50,6 +50,8 @@ class SwiPublicArea extends SwiArea {
 
         $petitionId = (int)$_GET['swi_petition'];
 
+        $petitionId = SwiPostType::resolveTranslatedPostId( $petitionId );
+
         wp_send_json( SwiSignatoryPostType::countPosts($petitionId,'private') );
 
     }
