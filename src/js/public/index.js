@@ -1,6 +1,6 @@
 import {nodeArray} from "./helpers";
 import Form from "./Form";
-import Counter from "./Counter";
+import Gauge from "./Gauge";
 import Poller from "./Poller";
 import DynNum from "./DynNum";
 
@@ -10,13 +10,15 @@ import DynNum from "./DynNum";
         numbers = d.getElementsByClassName('swi-petition-number');
 
     config = Object.assign(config, {
-        delay: config.pollInterval || 5000
+        delay: config.pollInterval || 10000
     });
 
     const poller = new Poller(config);
 
     nodeArray(counters).map(el => {
-        return new Counter(poller, el);
+        return new Gauge(el, poller, {
+            strokeWidth: 10
+        });
     })
 
     nodeArray(numbers).map(el => {

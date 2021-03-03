@@ -1,1 +1,770 @@
-!function(e){var t={};function i(n){if(t[n])return t[n].exports;var r=t[n]={i:n,l:!1,exports:{}};return e[n].call(r.exports,r,r.exports,i),r.l=!0,r.exports}i.m=e,i.c=t,i.d=function(e,t,n){i.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},i.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},i.t=function(e,t){if(1&t&&(e=i(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(i.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var r in e)i.d(n,r,function(t){return e[t]}.bind(null,r));return n},i.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return i.d(t,"a",t),t},i.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},i.p="",i(i.s=15)}([function(e,t){e.exports=window.wp.element},function(e,t){e.exports=window.wp.i18n},function(e,t){e.exports=window.wp.components},function(e,t){e.exports=window.wp.blocks},function(e,t){e.exports=window.wp.blockEditor},function(e,t,i){},function(e,t){e.exports=function(e,t,i){return t in e?Object.defineProperty(e,t,{value:i,enumerable:!0,configurable:!0,writable:!0}):e[t]=i,e},e.exports.default=e.exports,e.exports.__esModule=!0},function(e,t,i){var n=i(10),r=i(11),o=i(12),l=i(14);e.exports=function(e,t){return n(e)||r(e,t)||o(e,t)||l()},e.exports.default=e.exports,e.exports.__esModule=!0},function(e,t){e.exports=window.wp.coreData},function(e,t){e.exports=window.wp.data},function(e,t){e.exports=function(e){if(Array.isArray(e))return e},e.exports.default=e.exports,e.exports.__esModule=!0},function(e,t){e.exports=function(e,t){if("undefined"!=typeof Symbol&&Symbol.iterator in Object(e)){var i=[],_n=!0,n=!1,r=void 0;try{for(var o,l=e[Symbol.iterator]();!(_n=(o=l.next()).done)&&(i.push(o.value),!t||i.length!==t);_n=!0);}catch(e){n=!0,r=e}finally{try{_n||null==l.return||l.return()}finally{if(n)throw r}}return i}},e.exports.default=e.exports,e.exports.__esModule=!0},function(e,t,i){var n=i(13);e.exports=function(e,t){if(e){if("string"==typeof e)return n(e,t);var i=Object.prototype.toString.call(e).slice(8,-1);return"Object"===i&&e.constructor&&(i=e.constructor.name),"Map"===i||"Set"===i?Array.from(e):"Arguments"===i||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(i)?n(e,t):void 0}},e.exports.default=e.exports,e.exports.__esModule=!0},function(e,t){e.exports=function(e,t){(null==t||t>e.length)&&(t=e.length);for(var i=0,n=new Array(t);i<t;i++)n[i]=e[i];return n},e.exports.default=e.exports,e.exports.__esModule=!0},function(e,t){e.exports=function(){throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")},e.exports.default=e.exports,e.exports.__esModule=!0},function(e,t,i){"use strict";i.r(t);var n=i(3),r=i(1),o=i(6),l=i.n(o),a=i(7),c=i.n(a),s=i(0),p=i(4),u=i(2),b=i(8),m=i(9);function d(e,t){var i=Object.keys(e);if(Object.getOwnPropertySymbols){var n=Object.getOwnPropertySymbols(e);t&&(n=n.filter((function(t){return Object.getOwnPropertyDescriptor(e,t).enumerable}))),i.push.apply(i,n)}return i}function f(e){for(var t=1;t<arguments.length;t++){var i=null!=arguments[t]?arguments[t]:{};t%2?d(Object(i),!0).forEach((function(t){l()(e,t,i[t])})):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(i)):d(Object(i)).forEach((function(t){Object.defineProperty(e,t,Object.getOwnPropertyDescriptor(i,t))}))}return e}i(5),Object(n.registerBlockType)("swi-petition/form-block",{apiVersion:2,title:Object(r.__)("Petition! Form","swi-petition"),description:Object(r.__)("Input fields for Petition!","swi-petition"),category:"widgets",icon:"smiley",supports:{html:!1},attributes:{firstNameField:{type:"string",source:"html",selector:".swi-petition-fname"},lastNameField:{type:"string",source:"html",selector:".swi-petition-lname"},emailField:{type:"string",source:"html",selector:".swi-petition-email"},zipField:{type:"string",source:"html",selector:".swi-petition-zip"},ageField:{type:"string",source:"html",selector:".swi-petition-age"},ageFieldLabel:{type:"string",source:"text",selector:".swi-petition-age-label"}},edit:function(e){var t=Object(p.useBlockProps)(),i=Object(m.useSelect)((function(e){return e("core/editor").getCurrentPostType()}),[]),n=e.attributes,o=e.className,l=e.setAttributes,a=Object(b.useEntityProp)("postType",i,"meta"),d=c()(a,2),O=d[0],j=d[1];return[Object(s.createElement)(p.InspectorControls,null,Object(s.createElement)(u.PanelBody,{title:Object(r.__)("Petition! Settings","swi-petition"),initialOpen:!1},Object(s.createElement)(u.PanelRow,null,Object(s.createElement)(u.TextControl,{label:Object(r.__)("Expected number of signatures","swi-petition"),placeholder:"dddd",value:O.swi_petition_goal,type:"number",min:"1",onChange:function(e){return j(f(f({},O),{},{swi_petition_goal:e}))}})),Object(s.createElement)(u.PanelRow,null,Object(s.createElement)(u.TextControl,{label:Object(r.__)("Redirect after submission","swi-petition"),placeholder:"URL",value:O.swi_petition_redirect,type:"url",onChange:function(e){return j(f(f({},O),{},{swi_petition_redirect:e}))}}))),Object(s.createElement)(u.PanelBody,{title:Object(r.__)("Petition! form fields","swi-petition"),initialOpen:!0},Object(s.createElement)(u.PanelRow,null,Object(s.createElement)(u.ToggleControl,{label:Object(r.__)("First Name","swi-petition"),checked:n.firstNameField,onChange:function(e){return l({firstNameField:e})}})),Object(s.createElement)(u.PanelRow,null,Object(s.createElement)(u.ToggleControl,{label:Object(r.__)("Last Name","swi-petition"),checked:n.lastNameField,onChange:function(e){return l({lastNameField:e})}})),Object(s.createElement)(u.PanelRow,null,Object(s.createElement)(u.ToggleControl,{label:Object(r.__)("Email","swi-petition"),checked:n.emailField,onChange:function(e){return l({emailField:e})}})),Object(s.createElement)(u.PanelRow,null,Object(s.createElement)(u.ToggleControl,{label:Object(r.__)("Zip Code","swi-petition"),checked:n.zipField,onChange:function(e){return l({zipField:e})}})),Object(s.createElement)(u.PanelRow,null,Object(s.createElement)(u.ToggleControl,{label:Object(r.__)("Age confirmation","swi-petition"),checked:n.ageField,onChange:function(e){return l({ageField:e})}}))),n.zipField&&Object(s.createElement)(u.PanelBody,{title:Object(r.__)("Zip Code Settings","swi-petition"),initialOpen:!0},Object(s.createElement)(u.PanelRow,null,Object(s.createElement)(u.TextControl,{label:Object(r.__)("Allowed zip code pattern","swi-petition"),placeholder:"dddd",value:O.swi_petition_zip_pattern,onChange:function(e){return j(f(f({},O),{},{swi_petition_zip_pattern:e}))}})),Object(s.createElement)(u.PanelRow,null,Object(s.createElement)(u.TextControl,{label:Object(r.__)("Allowed zip codes","swi-petition"),placeholder:"Zip codes separated by commas",value:O.swi_petition_allowed_zips,onChange:function(e){return j(f(f({},O),{},{swi_petition_allowed_zips:e}))}})))),Object(s.createElement)("div",{className:"swi-petition-form"},Object(s.createElement)("form",t,n.firstNameField&&Object(s.createElement)("div",{className:"swi-petition-fname form-group"},Object(s.createElement)(u.TextControl,{label:Object(r.__)("First Name","swi-petition"),type:"text",disabled:!0,name:"swi_petition_fname"})),n.lastNameField&&Object(s.createElement)(u.TextControl,{label:Object(r.__)("Last Name","swi-petition"),type:"text",disabled:!0,className:o}),n.emailField&&Object(s.createElement)(u.TextControl,{label:Object(r.__)("Email","swi-petition"),type:"email",disabled:!0,className:o}),n.zipField&&Object(s.createElement)(u.TextControl,{label:Object(r.__)("Zip Code","swi-petition"),type:"number",disabled:!0,className:o}),n.ageField&&Object(s.createElement)("div",{className:"swi-petition-age"},Object(s.createElement)(u.ToggleControl,{checked:!0}),Object(s.createElement)(u.TextControl,{placeholder:n.ageFieldLabel||Object(r.__)("By submitting this form I confirm being 16 or older.","swi-petition"),type:"text",onChange:function(e){return l({ageFieldLabel:e})}})),Object(s.createElement)("div",null,Object(s.createElement)("button",{type:"submit",disabled:!0},Object(r.__)("Sign the Petition","swi-petition")))))]},save:function(e){var t=e.attributes;return e.className,Object(s.createElement)("div",{className:"swi-petition-form"},Object(s.createElement)("form",null,t.firstNameField&&Object(s.createElement)("div",{className:"swi-petition-fname form-group"},Object(s.createElement)("label",null,Object(r.__)("First Name","swi-petition")),Object(s.createElement)("input",{type:"text",name:"swi_petition_fname",placeholder:Object(r.__)("First Name","swi-petition")})),t.lastNameField&&Object(s.createElement)("div",{className:"swi-petition-lname form-group"},Object(s.createElement)("label",null,Object(r.__)("Last Name","swi-petition")),Object(s.createElement)("input",{type:"text",name:"swi_petition_lname",placeholder:Object(r.__)("Last Name","swi-petition")})),t.emailField&&Object(s.createElement)("div",{className:"swi-petition-email form-group"},Object(s.createElement)("label",null,Object(r.__)("Email","swi-petition")),Object(s.createElement)("input",{type:"email",name:"swi_petition_email",placeholder:Object(r.__)("mail@example.org","swi-petition")})),t.zipField&&Object(s.createElement)("div",{className:"swi-petition-zip form-group"},Object(s.createElement)("label",null,Object(r.__)("Zip Code","swi-petition")),Object(s.createElement)("input",{type:"text",name:"swi_petition_zip",placeholder:Object(r.__)("1000","swi-petition")})),t.ageField&&Object(s.createElement)("div",{className:"swi-petition-age form-group"},Object(s.createElement)("label",null,Object(s.createElement)("label",{className:"swi-petition-age-label switch"},Object(s.createElement)("input",{type:"checkbox",name:"swi_petition_age",autoComplete:"off"}),Object(s.createElement)("i",null)),Object(s.createElement)("span",null,t.ageFieldLabel))),Object(s.createElement)("div",{className:"alert alert-warning invalid-feedback",role:"alert",style:{display:"none"}}),Object(s.createElement)("div",{className:"btn-group",role:"group"},Object(s.createElement)("button",{className:"btn btn-primary",type:"submit"},Object(r.__)("Sign the Petition","swi-petition")))))}}),Object(n.registerBlockType)("swi-petition/counter-block",{apiVersion:2,title:Object(r.__)("Petition! Gauge","swi-petition"),description:Object(r.__)("Gauge for Petition!","swi-petition"),category:"widgets",icon:"smiley",supports:{html:!1},attributes:{hasCounter:{type:"string",source:"html",selector:".swi-petition-counter"}},edit:function(){return Object(s.createElement)("div",{className:"swi-petition-counter"},Object(s.createElement)("div",{className:"swi-petition-counter-number"},"9682"),Object(s.createElement)("svg",null,Object(s.createElement)("circle",{r:"50",cx:"70",cy:"70"})))},save:function(){return Object(s.createElement)("div",{className:"swi-petition-counter"})}})}]);
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/js/admin/index.js");
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./node_modules/@babel/runtime/helpers/arrayLikeToArray/index.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/arrayLikeToArray/index.js ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+
+  return arr2;
+}
+
+module.exports = _arrayLikeToArray;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/arrayWithHoles/index.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/arrayWithHoles/index.js ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+module.exports = _arrayWithHoles;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/defineProperty/index.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/defineProperty/index.js ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+module.exports = _defineProperty;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/iterableToArrayLimit/index.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/iterableToArrayLimit/index.js ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _iterableToArrayLimit(arr, i) {
+  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+
+module.exports = _iterableToArrayLimit;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/nonIterableRest/index.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/nonIterableRest/index.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+module.exports = _nonIterableRest;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/slicedToArray/index.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/slicedToArray/index.js ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayWithHoles = __webpack_require__(/*! @babel/runtime/helpers/arrayWithHoles */ "./node_modules/@babel/runtime/helpers/arrayWithHoles/index.js");
+
+var iterableToArrayLimit = __webpack_require__(/*! @babel/runtime/helpers/iterableToArrayLimit */ "./node_modules/@babel/runtime/helpers/iterableToArrayLimit/index.js");
+
+var unsupportedIterableToArray = __webpack_require__(/*! @babel/runtime/helpers/unsupportedIterableToArray */ "./node_modules/@babel/runtime/helpers/unsupportedIterableToArray/index.js");
+
+var nonIterableRest = __webpack_require__(/*! @babel/runtime/helpers/nonIterableRest */ "./node_modules/@babel/runtime/helpers/nonIterableRest/index.js");
+
+function _slicedToArray(arr, i) {
+  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || unsupportedIterableToArray(arr, i) || nonIterableRest();
+}
+
+module.exports = _slicedToArray;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/unsupportedIterableToArray/index.js":
+/*!*********************************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/unsupportedIterableToArray/index.js ***!
+  \*********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayLikeToArray = __webpack_require__(/*! @babel/runtime/helpers/arrayLikeToArray */ "./node_modules/@babel/runtime/helpers/arrayLikeToArray/index.js");
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return arrayLikeToArray(o, minLen);
+}
+
+module.exports = _unsupportedIterableToArray;
+module.exports["default"] = module.exports, module.exports.__esModule = true;
+
+/***/ }),
+
+/***/ "./src/css/block-editor.scss":
+/*!***********************************!*\
+  !*** ./src/css/block-editor.scss ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
+/***/ "./src/js/admin/blocks/counter/index.js":
+/*!**********************************************!*\
+  !*** ./src/js/admin/blocks/counter/index.js ***!
+  \**********************************************/
+/*! exports provided: register */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "register", function() { return register; });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _css_block_editor_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../css/block-editor.scss */ "./src/css/block-editor.scss");
+/* harmony import */ var _css_block_editor_scss__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_css_block_editor_scss__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+function register() {
+  Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])('swi-petition/counter-block', {
+    apiVersion: 2,
+    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Petition! Gauge', 'swi-petition'),
+    description: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__["__"])('Gauge for Petition!', 'swi-petition'),
+    category: 'widgets',
+    icon: 'smiley',
+    supports: {
+      html: false
+    },
+    attributes: {
+      hasCounter: {
+        type: 'string',
+        source: 'html',
+        selector: '.swi-petition-counter'
+      }
+    },
+    edit: function edit() {
+      return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+        className: "swi-petition-counter"
+      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+        className: "swi-petition-counter-number"
+      }, "9682"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("svg", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("circle", {
+        r: "50",
+        cx: "70",
+        cy: "70"
+      })));
+    },
+    save: function save() {
+      return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+        className: "swi-petition-counter"
+      });
+    }
+  });
+}
+
+/***/ }),
+
+/***/ "./src/js/admin/blocks/form/edit.js":
+/*!******************************************!*\
+  !*** ./src/js/admin/blocks/form/edit.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Edit; });
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty/index.js");
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/@babel/runtime/helpers/slicedToArray/index.js");
+/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _wordpress_core_data__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/core-data */ "@wordpress/core-data");
+/* harmony import */ var _wordpress_core_data__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_core_data__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _css_block_editor_scss__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../css/block-editor.scss */ "./src/css/block-editor.scss");
+/* harmony import */ var _css_block_editor_scss__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_css_block_editor_scss__WEBPACK_IMPORTED_MODULE_8__);
+
+
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+
+
+
+
+
+
+
+
+/**
+ * The edit function describes the structure of your block in the context of the
+ * editor. This represents what the editor will render when the block is used.
+ *
+ * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#edit
+ *
+ * @return {WPElement} Element to render.
+ */
+
+function Edit(props) {
+  var blockProps = Object(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["useBlockProps"])(),
+      postType = Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_7__["useSelect"])(function (select) {
+    return select('core/editor').getCurrentPostType();
+  }, []),
+      attributes = props.attributes,
+      className = props.className,
+      setAttributes = props.setAttributes,
+      _useEntityProp = Object(_wordpress_core_data__WEBPACK_IMPORTED_MODULE_6__["useEntityProp"])('postType', postType, 'meta'),
+      _useEntityProp2 = _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_1___default()(_useEntityProp, 2),
+      meta = _useEntityProp2[0],
+      setMeta = _useEntityProp2[1];
+
+  return [Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__["InspectorControls"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelBody"], {
+    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Petition! Settings', 'swi-petition'),
+    initialOpen: false
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["TextControl"], {
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Expected number of signatures', 'swi-petition'),
+    placeholder: 'dddd',
+    value: meta.swi_petition_goal,
+    type: "number",
+    min: "1",
+    onChange: function onChange(val) {
+      return setMeta(_objectSpread(_objectSpread({}, meta), {}, {
+        'swi_petition_goal': val
+      }));
+    }
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["TextControl"], {
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Redirect after submission', 'swi-petition'),
+    placeholder: 'URL',
+    value: meta.swi_petition_redirect,
+    type: "url",
+    onChange: function onChange(val) {
+      return setMeta(_objectSpread(_objectSpread({}, meta), {}, {
+        'swi_petition_redirect': val
+      }));
+    }
+  }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelBody"], {
+    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])("Petition! form fields", 'swi-petition'),
+    initialOpen: true
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["ToggleControl"], {
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('First Name', 'swi-petition'),
+    checked: attributes.firstNameField,
+    onChange: function onChange(val) {
+      return setAttributes({
+        firstNameField: val
+      });
+    }
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["ToggleControl"], {
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Last Name', 'swi-petition'),
+    checked: attributes.lastNameField,
+    onChange: function onChange(val) {
+      return setAttributes({
+        lastNameField: val
+      });
+    }
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["ToggleControl"], {
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Email', 'swi-petition'),
+    checked: attributes.emailField,
+    onChange: function onChange(val) {
+      return setAttributes({
+        emailField: val
+      });
+    }
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["ToggleControl"], {
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Zip Code', 'swi-petition'),
+    checked: attributes.zipField,
+    onChange: function onChange(val) {
+      return setAttributes({
+        zipField: val
+      });
+    }
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["ToggleControl"], {
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Age confirmation', 'swi-petition'),
+    checked: attributes.ageField,
+    onChange: function onChange(val) {
+      return setAttributes({
+        ageField: val
+      });
+    }
+  }))), attributes.zipField && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelBody"], {
+    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Zip Code Settings', 'swi-petition'),
+    initialOpen: true
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["TextControl"], {
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Allowed zip code pattern', 'swi-petition'),
+    placeholder: 'dddd',
+    value: meta.swi_petition_zip_pattern,
+    onChange: function onChange(val) {
+      return setMeta(_objectSpread(_objectSpread({}, meta), {}, {
+        'swi_petition_zip_pattern': val
+      }));
+    }
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelRow"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["TextControl"], {
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Allowed zip codes', 'swi-petition'),
+    placeholder: 'Zip codes separated by commas',
+    value: meta.swi_petition_allowed_zips,
+    onChange: function onChange(val) {
+      return setMeta(_objectSpread(_objectSpread({}, meta), {}, {
+        'swi_petition_allowed_zips': val
+      }));
+    }
+  })))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("div", {
+    className: "swi-petition-form"
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("form", blockProps, attributes.firstNameField && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("div", {
+    className: "swi-petition-fname form-group"
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["TextControl"], {
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('First Name', 'swi-petition'),
+    type: "text",
+    disabled: true,
+    name: "swi_petition_fname"
+  })), attributes.lastNameField && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["TextControl"], {
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Last Name', 'swi-petition'),
+    type: "text",
+    disabled: true,
+    className: className
+  }), attributes.emailField && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["TextControl"], {
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Email', 'swi-petition'),
+    type: "email",
+    disabled: true,
+    className: className
+  }), attributes.zipField && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["TextControl"], {
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Zip Code', 'swi-petition'),
+    type: "number",
+    disabled: true,
+    className: className
+  }), attributes.ageField && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("div", {
+    className: 'swi-petition-age'
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["ToggleControl"], {
+    checked: true
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["TextControl"], {
+    placeholder: attributes.ageFieldLabel || Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('By submitting this form I confirm being 16 or older.', 'swi-petition'),
+    type: "text",
+    onChange: function onChange(val) {
+      return setAttributes({
+        ageFieldLabel: val
+      });
+    }
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__["createElement"])("button", {
+    type: "submit",
+    disabled: true
+  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Sign the Petition', 'swi-petition')))))];
+}
+
+/***/ }),
+
+/***/ "./src/js/admin/blocks/form/index.js":
+/*!*******************************************!*\
+  !*** ./src/js/admin/blocks/form/index.js ***!
+  \*******************************************/
+/*! exports provided: register */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "register", function() { return register; });
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/blocks */ "@wordpress/blocks");
+/* harmony import */ var _wordpress_blocks__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _edit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./edit */ "./src/js/admin/blocks/form/edit.js");
+/* harmony import */ var _save__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./save */ "./src/js/admin/blocks/form/save.js");
+
+
+
+
+function register() {
+  Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_0__["registerBlockType"])('swi-petition/form-block', {
+    apiVersion: 2,
+    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Petition! Form', 'swi-petition'),
+    description: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Input fields for Petition!', 'swi-petition'),
+    category: 'widgets',
+    icon: 'smiley',
+    supports: {
+      html: false
+    },
+    attributes: {
+      firstNameField: {
+        type: 'string',
+        source: 'html',
+        selector: '.swi-petition-fname'
+      },
+      lastNameField: {
+        type: 'string',
+        source: 'html',
+        selector: '.swi-petition-lname'
+      },
+      emailField: {
+        type: 'string',
+        source: 'html',
+        selector: '.swi-petition-email'
+      },
+      zipField: {
+        type: 'string',
+        source: 'html',
+        selector: '.swi-petition-zip'
+      },
+      ageField: {
+        type: 'string',
+        source: 'html',
+        selector: '.swi-petition-age'
+      },
+      ageFieldLabel: {
+        type: 'string',
+        source: 'text',
+        selector: '.swi-petition-age-label'
+      }
+    },
+    edit: _edit__WEBPACK_IMPORTED_MODULE_2__["default"],
+    save: _save__WEBPACK_IMPORTED_MODULE_3__["default"]
+  });
+}
+
+/***/ }),
+
+/***/ "./src/js/admin/blocks/form/save.js":
+/*!******************************************!*\
+  !*** ./src/js/admin/blocks/form/save.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return save; });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+
+
+/**
+ * The save function defines the way in which the different attributes should
+ * be combined into the final markup, which is then serialized by the block
+ * editor into `post_content`.
+ *
+ * @see https://developer.wordpress.org/block-editor/developers/block-api/block-edit-save/#save
+ *
+ * @return {WPElement} Element to render.
+ */
+
+function save(_ref) {
+  var attributes = _ref.attributes,
+      className = _ref.className;
+  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+    className: "swi-petition-form"
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("form", null, attributes.firstNameField && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+    className: "swi-petition-fname form-group"
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("label", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('First Name', 'swi-petition')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("input", {
+    type: "text",
+    name: "swi_petition_fname",
+    placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('First Name', 'swi-petition')
+  })), attributes.lastNameField && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+    className: "swi-petition-lname form-group"
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("label", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Last Name', 'swi-petition')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("input", {
+    type: "text",
+    name: "swi_petition_lname",
+    placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Last Name', 'swi-petition')
+  })), attributes.emailField && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+    className: "swi-petition-email form-group"
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("label", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Email', 'swi-petition')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("input", {
+    type: "email",
+    name: "swi_petition_email",
+    placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('mail@example.org', 'swi-petition')
+  })), attributes.zipField && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+    className: "swi-petition-zip form-group"
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("label", null, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Zip Code', 'swi-petition')), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("input", {
+    type: "text",
+    name: "swi_petition_zip",
+    placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('1000', 'swi-petition')
+  })), attributes.ageField && Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+    className: "swi-petition-age form-group"
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("label", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("label", {
+    className: "swi-petition-age-label switch"
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("input", {
+    type: "checkbox",
+    name: "swi_petition_age",
+    autoComplete: 'off'
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("i", null)), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("span", null, attributes.ageFieldLabel))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+    className: "alert alert-warning invalid-feedback",
+    role: "alert",
+    style: {
+      display: 'none'
+    }
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+    className: "btn-group",
+    role: "group"
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("button", {
+    className: 'btn btn-primary',
+    type: "submit"
+  }, Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Sign the Petition', 'swi-petition')))));
+}
+
+/***/ }),
+
+/***/ "./src/js/admin/index.js":
+/*!*******************************!*\
+  !*** ./src/js/admin/index.js ***!
+  \*******************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _blocks_form_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./blocks/form/index */ "./src/js/admin/blocks/form/index.js");
+/* harmony import */ var _blocks_counter_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./blocks/counter/index */ "./src/js/admin/blocks/counter/index.js");
+
+
+_blocks_form_index__WEBPACK_IMPORTED_MODULE_0__["register"]();
+_blocks_counter_index__WEBPACK_IMPORTED_MODULE_1__["register"]();
+
+/***/ }),
+
+/***/ "@wordpress/block-editor":
+/*!*************************************!*\
+  !*** external ["wp","blockEditor"] ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["wp"]["blockEditor"]; }());
+
+/***/ }),
+
+/***/ "@wordpress/blocks":
+/*!********************************!*\
+  !*** external ["wp","blocks"] ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["wp"]["blocks"]; }());
+
+/***/ }),
+
+/***/ "@wordpress/components":
+/*!************************************!*\
+  !*** external ["wp","components"] ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["wp"]["components"]; }());
+
+/***/ }),
+
+/***/ "@wordpress/core-data":
+/*!**********************************!*\
+  !*** external ["wp","coreData"] ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["wp"]["coreData"]; }());
+
+/***/ }),
+
+/***/ "@wordpress/data":
+/*!******************************!*\
+  !*** external ["wp","data"] ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["wp"]["data"]; }());
+
+/***/ }),
+
+/***/ "@wordpress/element":
+/*!*********************************!*\
+  !*** external ["wp","element"] ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["wp"]["element"]; }());
+
+/***/ }),
+
+/***/ "@wordpress/i18n":
+/*!******************************!*\
+  !*** external ["wp","i18n"] ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["wp"]["i18n"]; }());
+
+/***/ })
+
+/******/ });
+//# sourceMappingURL=index.js.map
