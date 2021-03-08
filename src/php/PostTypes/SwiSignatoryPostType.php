@@ -133,16 +133,18 @@ class SwiSignatoryPostType extends SwiPostType {
      *
      * @return bool
      */
-    public static function exists(string $key, $value): bool {
+    public static function exists( string $key, $value ): bool {
         $query = new WP_Query( [
-            'post_type'   => static::TYPE,
-            'numberposts' => -1,
-            'meta_key'     => $key,
-            'meta_value'   => $value,
-            'meta_compare' => '=',
+            'post_type'      => static::TYPE,
+            'fields'         => 'ids',
+            'posts_per_page' => - 1,
+            'post_status'    => 'private',
+            'meta_key'       => $key,
+            'meta_value'     => $value,
+            'meta_compare'   => '=',
         ] );
 
-        return (bool)$query->post_count;
+        return (bool)$query->found_posts;
     }
 
     /**
