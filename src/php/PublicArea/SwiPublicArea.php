@@ -69,10 +69,10 @@ class SwiPublicArea extends SwiArea {
             wp_send_json_error(['error' => __( 'You\'re not allowed to do this.', 'swi-petition' )], 500);
         }
 
-        $firstName = sanitize_text_field($_POST['swi_petition_fname']);
-        $lastName = sanitize_text_field($_POST['swi_petition_lname']);
+        $firstName = sanitize_text_field(trim($_POST['swi_petition_fname']));
+        $lastName = sanitize_text_field(trim($_POST['swi_petition_lname']));
         $petitionId = (int)$_POST['swi_petition'];
-        $email = sanitize_email($_POST['swi_petition_email']);
+        $email = sanitize_email(trim($_POST['swi_petition_email']));
 
         if ( empty($petitionId) || empty($email) || empty($firstName) || empty($lastName) ) {
             wp_send_json_error(['error' => __( 'We\'re missing some data...', 'swi-petition' )], 500);
