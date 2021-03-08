@@ -132,16 +132,22 @@ class SwiPublicArea extends SwiArea {
 
         wp_set_script_translations( $handle, 'swi-petition', $this->loader->getPluginPath('languages') );
 
+        # Support for petitions translated by WPML. If present this will return the original post ID, so
+        # that all signatures collected under the same petition. If WPML is not installed or the post not translated,
+        # this will return the current post ID.
+        # TODO this will resolve to an incorrect post ID if using the form in a widget...
+        $originalId = $post ? SwiPostType::resolveTranslatedPostId( $post->ID ) : 0;
+
         wp_localize_script(
             $handle,
             'swiPetition',
             [
                 'url'    => admin_url( 'admin-ajax.php' ),
                 'nonce'  => wp_create_nonce( 'swi_petition_submit' ),
-                'id'     => $post ? SwiPostType::resolveTranslatedPostId ($post->ID ) : 0,
-                'goal'   => $post ? (int)get_post_meta( $post->ID, 'swi_petition_goal', true) : 0,
-                'count'  => $post ? SwiSignatoryPostType::countPosts($post->ID, 'private') : 0,
-                'redirect' => $post ? esc_url(get_post_meta( $post->ID, 'swi_petition_redirect', true)) : 0,
+                'id'     => $originalId,
+                'goal'   => $post ? (int)get_post_meta( $originalId, 'swi_petition_goal', true ) : 0,
+                'count'  => $post ? SwiSignatoryPostType::countPosts( $originalId, 'private' ) : 0,
+                'redirect' => $post ? esc_url( get_post_meta( $originalId, 'swi_petition_redirect', true ) ) : 0,
             ]
         );
 
