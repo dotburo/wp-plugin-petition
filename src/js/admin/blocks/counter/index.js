@@ -1,5 +1,6 @@
 import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
+import icon from '../icon';
 import '../../../../css/block-editor.scss';
 
 export function register() {
@@ -11,7 +12,7 @@ export function register() {
             'swi-petition'
         ),
         category: 'widgets',
-        icon: 'smiley',
+        icon,
         supports: {
             html: false,
         },

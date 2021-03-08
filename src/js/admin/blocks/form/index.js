@@ -2,6 +2,7 @@ import { registerBlockType } from '@wordpress/blocks';
 import { __ } from '@wordpress/i18n';
 import Edit from './edit';
 import save from './save';
+import icon from '../icon';
 
 export function register() {
     registerBlockType('swi-petition/form-block', {
@@ -12,7 +13,7 @@ export function register() {
             'swi-petition'
         ),
         category: 'widgets',
-        icon: 'smiley',
+        icon,
         supports: {
             html: false,
         },
