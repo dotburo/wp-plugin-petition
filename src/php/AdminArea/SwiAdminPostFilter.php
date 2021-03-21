@@ -2,6 +2,7 @@
 
 namespace Dotburo\AdminArea;
 
+use Dotburo\PostTypes\SwiPetitionPostType;
 use Dotburo\PostTypes\SwiPostType;
 
 class SwiAdminPostFilter {
@@ -9,23 +10,20 @@ class SwiAdminPostFilter {
     /** @var SwiPostType */
     protected $postType;
 
-    /** @var array */
-    protected $values;
-
-    public function __construct( SwiPostType $postType, array $values = [] ) {
+    public function __construct( SwiPostType $postType ) {
 
         $this->postType = $postType;
 
-        $this->values = $values;
+        $postType->getLoader()->add_action( 'restrict_manage_posts', $this, 'restrictManagePosts' );
 
-        if (is_admin()) {
-            add_filter( 'parse_query', [$this, 'parseQuery'] );
-        }
+        $postType->getLoader()->add_action( 'parse_query', $this, 'parseQuery' );
     }
 
     public function restrictManagePosts( $post_type ) {
         if ( $post_type === $this->postType::TYPE ) {
-            $this->view( $this->values );
+            $options = SwiPetitionPostType::getPostIds( 'post_title' );
+
+            $this->view( $options );
         }
     }
 
@@ -55,12 +53,11 @@ class SwiAdminPostFilter {
     protected function view( $options ) {
         ?>
         <select name="swi_petition">
-            <option value=""><?php _e( 'Filter By ', 'swi-petition' ); ?></option>
+            <option value=""><?php _e( 'Select' ); ?></option>
             <?php
             $current_v = isset( $_GET['swi_petition'] ) ? $_GET['swi_petition'] : '';
             foreach ( $options as $label => $value ) {
-                printf
-                (
+                printf(
                     '<option value="%s"%s>%s</option>',
                     $value,
                     $value == $current_v ? ' selected="selected"' : '',

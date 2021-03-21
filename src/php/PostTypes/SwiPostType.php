@@ -42,11 +42,20 @@ abstract class SwiPostType {
 
         $this->loader->add_action( 'init', $this, 'init' );
 
-        if ( is_admin() ) {
+        if ( defined('DOING_AJAX') && DOING_AJAX ) {
+            //$this->registerAjaxHooks();
+        } elseif ( is_admin() ) {
             $this->registerAdminHooks();
         } else {
             $this->registerPublicHooks();
         }
+    }
+
+    /**
+     * @return SwiHookLoader
+     */
+    public function getLoader(): SwiHookLoader {
+        return $this->loader;
     }
 
     /**
@@ -86,5 +95,16 @@ abstract class SwiPostType {
         return array_map( function ( $post ) {
             return $post->ID;
         }, $posts );
+    }
+
+    /**
+     * Return all signatories.
+     *
+     * @param int $postId
+     *
+     * @return array
+     */
+    public function getAll( int $postId = 0 ): array {
+        return [];
     }
 }

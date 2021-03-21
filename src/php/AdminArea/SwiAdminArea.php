@@ -23,7 +23,7 @@ use Dotburo\SwiPetition;
  * enqueue the admin-facing stylesheet and JavaScript.
  *
  * @package    Swi_Petition
- * @subpackage Swi_Petition/PublicArea
+ * @subpackage Swi_Petition/AdminArea
  * @author     dotburo <code@dotburo.org>
  */
 class SwiAdminArea extends SwiArea {

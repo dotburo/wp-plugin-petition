@@ -3,6 +3,7 @@
 namespace Dotburo\PostTypes;
 
 use Dotburo\AdminArea\SwiAdminPostFilter;
+use Dotburo\AdminArea\SwiCsvExporter;
 use WP_Error;
 use WP_Query;
 
@@ -21,9 +22,9 @@ class SwiSignatoryPostType extends SwiPostType {
         $this->loader->add_filter( "manage_edit-{$type}_sortable_columns", $this, 'setSortableAdminColumns' );
         $this->loader->add_action( "pre_get_posts", $this, 'sortAdminColumns', 10, 2 );
 
-        $filter = new SwiAdminPostFilter( $this, SwiPostType::getPostIds( 'post_title' ) );
+        new SwiAdminPostFilter( $this );
 
-        $this->loader->add_action( 'restrict_manage_posts', $filter, 'restrictManagePosts' );
+        new SwiCsvExporter( $this );
     }
 
     /** @inheritDoc */
@@ -166,6 +167,30 @@ class SwiSignatoryPostType extends SwiPostType {
         $results = (array)$wpdb->get_results( $wpdb->prepare( $query, static::TYPE, $petitionId ) );
 
         return !empty($results) ? $results[0]->num_posts : 0;
+    }
+
+    /** @inheritDoc */
+    public function getAll( int $petitionId = 0 ): array {
+        global $wpdb;
+
+        $fn = __( 'First Name' );
+        $ln = __( 'Last Name' );
+        $em = __( 'Email' );
+        $zi = __( 'Zip Code' );
+        $da = __( 'Date' );
+
+        $query = "SELECT fn.meta_value as '{$fn}', ln.meta_value as '{$ln}', em.meta_value as '{$em}', zi.meta_value as '{$zi}',"
+                 . " p.post_date as '{$da}'"
+                 . " FROM {$wpdb->posts} as p"
+                 . " INNER JOIN {$wpdb->postmeta} as fn ON p.ID = fn.post_id and fn.meta_key = 'swi_signatory_fname'"
+                 . " INNER JOIN {$wpdb->postmeta} as ln ON p.ID = ln.post_id and ln.meta_key = 'swi_signatory_lname'"
+                 . " INNER JOIN {$wpdb->postmeta} as em ON p.ID = em.post_id and em.meta_key = 'swi_signatory_email'"
+                 . " INNER JOIN {$wpdb->postmeta} as zi ON p.ID = zi.post_id and zi.meta_key = 'swi_signatory_zip'"
+                 . " INNER JOIN {$wpdb->postmeta} as pe ON p.ID = pe.post_id and pe.meta_key = 'swi_signatory_petition'"
+                 . " WHERE p.post_type = %s AND p.post_status = 'private'"
+                 . ( $petitionId ? " AND pe.meta_value = $petitionId" : '' );
+
+        return (array)$wpdb->get_results( $wpdb->prepare( $query, static::TYPE ), ARRAY_A );
     }
 
     /** @inheritDoc */
