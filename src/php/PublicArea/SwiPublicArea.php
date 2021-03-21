@@ -147,7 +147,7 @@ class SwiPublicArea extends SwiArea {
                 'id'     => $originalId,
                 'goal'   => $post ? (int)get_post_meta( $originalId, 'swi_petition_goal', true ) : 0,
                 'count'  => $post ? SwiSignatoryPostType::countPosts( $originalId, 'private' ) : 0,
-                'redirect' => $post ? esc_url( get_post_meta( $originalId, 'swi_petition_redirect', true ) ) : 0,
+                'redirect' => $post ? esc_url( get_post_meta( $post->ID, 'swi_petition_redirect', true ) ) : 0,
             ]
         );
 
