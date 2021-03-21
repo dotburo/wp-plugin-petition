@@ -23,15 +23,17 @@ export default class Form {
     }
 
     bindForm() {
-        this.form.addEventListener('input', e => {
-            this.validateField(e.target);
+        let self = this;
+
+        this.form.addEventListener('input', function (e) {
+            self.validateField(e.target);
         });
 
-        this.form.addEventListener('submit', e => {
+        this.form.addEventListener('submit', function (e) {
             e.preventDefault();
 
-            if (this.validateFields(true)) {
-                this.submit();
+            if (self.validateFields(true)) {
+                self.submit();
             }
 
             return false;
@@ -39,30 +41,32 @@ export default class Form {
     }
 
     submit() {
+        let self = this;
+
         window
             .fetch(this.url, {
                 method: 'POST',
-                body: this.getValues(true),
+                body: self.getValues(true),
                 credentials: 'same-origin',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
                 },
             })
-            .then(response => {
+            .then(function (response) {
                 if (response.ok) {
-                    this.clearFields();
+                    self.clearFields();
                 }
                 return response.json()
             })
-            .then(json => {
+            .then(function (json) {
                 if (json.data && json.data.error) {
-                    this.showErrorMsg(null, [json.data.error], true)
+                    self.showErrorMsg(null, [json.data.error], true)
                 } else {
-                    this.onSuccess();
+                    self.onSuccess();
                 }
             })
-            .catch(error => {
-                this.showErrorMsg(null, [error.message], true)
+            .catch(function (error) {
+                self.showErrorMsg(null, [error.message], true)
             })
     }
 
@@ -131,7 +135,9 @@ export default class Form {
     }
 
     clearFields() {
-        this.getFields().forEach(field => field.value = '');
+        this.getFields().forEach(function (field) {
+            field.value = ''
+        });
     }
 
     getFields(el = this.el) {
@@ -149,16 +155,19 @@ export default class Form {
     }
 
     getValues(serialise = false) {
-        let values = {};
+        let values = {},
+            self = this;
 
-        this.getFields().forEach(field => {
-            values[field.name] = this.getValue(field)
+        this.getFields().forEach(function (field) {
+            values[field.name] = self.getValue(field)
         });
 
         if (serialise) {
             values = Object.assign(values, this.include);
 
-            return Object.keys(values).map(k => k + '=' + values[k]).join('&')
+            return Object.keys(values).map(function (k) {
+                return k + '=' + values[k]
+            }).join('&')
         }
 
         return values;

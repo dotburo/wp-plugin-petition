@@ -14,7 +14,7 @@ export function nodeArray(nodeList) {
  * @param {HTMLElement} el
  * @param {String} selector
  */
-export const getParentElement = (el, selector) => {
+export const getParentElement = function (el, selector) {
     el = el.parentElement;
     while (el) {
         if (el.matches.call(el, selector)) {

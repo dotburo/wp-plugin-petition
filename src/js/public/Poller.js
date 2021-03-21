@@ -23,43 +23,45 @@ export default class Poller {
     }
 
     _setTimeout() {
-        window.setTimeout(() => {
-            this._getCount();
+        let self = this;
+        window.setTimeout(function() {
+            self._getCount();
         }, this.delay)
     }
 
     _startWithOffset() {
-        window.setTimeout(() => {
-            if (this.initialOffset <= this.count) {
-                this._runCallbacks(this.initialOffset++);
-                this._startWithOffset(this.initialOffset);
+        let self = this;
+        window.setTimeout(function() {
+            if (self.initialOffset <= self.count) {
+                self._runCallbacks(self.initialOffset++);
+                self._startWithOffset(self.initialOffset);
             } else {
-                this._getCount();
+                self._getCount();
             }
         }, 500 + (Math.random(0, 1) * 1100))
     }
 
     _getCount() {
-        let url = this.options.url + '?action=swi_petition_poll&swi_petition=' + this.options.id
+        let url = this.options.url + '?action=swi_petition_poll&swi_petition=' + this.options.id,
+            self = this;
 
-        window.fetch( url )
-            .then(response => {
-                if (response.ok) {
-                    return response.json()
-                }
+        window.fetch(url)
+            .then(function(response) {
+                return response.ok ? response.json() : Promise.reject(response.error())
             })
-            .then(count => {
-                this._runCallbacks(count);
-                this._setTimeout();
+            .then(function(count) {
+                self._runCallbacks(count);
+                self._setTimeout();
             })
-            .catch(error => {
+            .catch(function(error) {
                 console.log(error);
             })
     }
 
     _runCallbacks(count) {
-        this.callbacks.forEach(fn => {
-            fn(count, this.goal)
+        let self = this;
+        this.callbacks.forEach(function(fn) {
+            fn(count, self.goal)
         });
     }
 }
