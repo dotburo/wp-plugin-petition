@@ -73,6 +73,7 @@ class SwiPublicArea extends SwiArea {
         $lastName = sanitize_text_field(trim($_POST['swi_petition_lname']));
         $petitionId = (int)$_POST['swi_petition'];
         $email = sanitize_email(trim($_POST['swi_petition_email']));
+        $newsletter = $_POST['swi_petition_newsletter'] === 'true';
 
         if ( empty($petitionId) || empty($email) || empty($firstName) || empty($lastName) ) {
             wp_send_json_error(['error' => __( 'We\'re missing some data...', 'swi-petition' )], 500);
@@ -94,7 +95,7 @@ class SwiPublicArea extends SwiArea {
             }
         }
 
-        $result = SwiSignatoryPostType::create($petitionId, $firstName, $lastName, $email, $zip ?? null);
+        $result = SwiSignatoryPostType::create($petitionId, $firstName, $lastName, $email, $zip ?? null, $newsletter);
 
         is_int($result)
             ? wp_send_json(1)

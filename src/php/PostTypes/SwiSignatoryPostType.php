@@ -39,11 +39,12 @@ class SwiSignatoryPostType extends SwiPostType {
     public function setAdminColumns( $columns ) {
         unset( $columns['title'], $columns['date'] );
 
-        $columns['swi_signatory_fname_column']    = __( 'First Name' );
-        $columns['swi_signatory_lname_column']    = __( 'Last Name' );
-        $columns['swi_signatory_petition_column'] = __( 'Petition', 'swi-petition' );
-        $columns['swi_signatory_email_column']    = __( 'Email' );
-        $columns['swi_signatory_date_column']     = __( 'Date' );
+        $columns['swi_signatory_fname_column']          = __( 'First Name' );
+        $columns['swi_signatory_lname_column']          = __( 'Last Name' );
+        $columns['swi_signatory_petition_column']       = __( 'Petition', 'swi-petition' );
+        $columns['swi_signatory_email_column']          = __( 'Email' );
+        $columns['swi_signatory_newsletter_column']     = __( 'Newsletter' );
+        $columns['swi_signatory_date_column']           = __( 'Date' );
 
         return $columns;
     }
@@ -65,6 +66,10 @@ class SwiSignatoryPostType extends SwiPostType {
             case 'swi_signatory_petition_column':
                 $petitionId = (int)get_metadata( 'post', $postId, 'swi_signatory_petition', true );
                 echo $petitionId ? get_post_field( 'post_title', (int)$petitionId ) : '';
+                break;
+            case 'swi_signatory_newsletter_column':
+                $newsletter = (int)get_metadata( 'post', $postId, 'swi_signatory_newsletter', true );
+                echo $newsletter ? '✓' : '×';
                 break;
             default:
                 $key = str_replace( '_column', '', $columnName );
@@ -112,7 +117,7 @@ class SwiSignatoryPostType extends SwiPostType {
      *
      * @return int|WP_Error
      */
-    public static function create(int $petitionId, string $firstName, string $lastName, string $email, string $zip = null) {
+    public static function create(int $petitionId, string $firstName, string $lastName, string $email, string $zip = null, bool $newsletter) {
         return wp_insert_post([
             'post_status' => 'private',
             'post_type' => static::TYPE,
@@ -124,6 +129,7 @@ class SwiSignatoryPostType extends SwiPostType {
                 'swi_signatory_email' => $email,
                 'swi_signatory_zip' => $zip,
                 'swi_signatory_petition' => $petitionId,
+                'swi_signatory_newsletter' => (int)$newsletter,
             ]
         ]);
     }
@@ -178,15 +184,17 @@ class SwiSignatoryPostType extends SwiPostType {
         $em = __( 'Email' );
         $zi = __( 'Zip Code' );
         $da = __( 'Date' );
+        $nl = __( 'Newsletter' );
 
         $query = "SELECT fn.meta_value as '{$fn}', ln.meta_value as '{$ln}', em.meta_value as '{$em}', zi.meta_value as '{$zi}',"
-                 . " p.post_date as '{$da}'"
+                 . "nl.meta_value as '{$nl}', p.post_date as '{$da}'"
                  . " FROM {$wpdb->posts} as p"
                  . " INNER JOIN {$wpdb->postmeta} as fn ON p.ID = fn.post_id and fn.meta_key = 'swi_signatory_fname'"
                  . " INNER JOIN {$wpdb->postmeta} as ln ON p.ID = ln.post_id and ln.meta_key = 'swi_signatory_lname'"
                  . " INNER JOIN {$wpdb->postmeta} as em ON p.ID = em.post_id and em.meta_key = 'swi_signatory_email'"
                  . " INNER JOIN {$wpdb->postmeta} as zi ON p.ID = zi.post_id and zi.meta_key = 'swi_signatory_zip'"
                  . " INNER JOIN {$wpdb->postmeta} as pe ON p.ID = pe.post_id and pe.meta_key = 'swi_signatory_petition'"
+                 . " LEFT JOIN {$wpdb->postmeta} as nl ON p.ID = nl.post_id and nl.meta_key = 'swi_signatory_newsletter'"
                  . " WHERE p.post_type = %s AND p.post_status = 'private'"
                  . ( $petitionId ? " AND pe.meta_value = $petitionId" : '' );
 

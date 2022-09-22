@@ -47,4 +47,9 @@ export default {
             message: '^' + __( "Please confirm your age.", 'swi-petition' ),
         }
     },
+    swi_petition_newsletter: {
+        inclusion: {
+            within: [true, false],
+        }
+    },
 }
