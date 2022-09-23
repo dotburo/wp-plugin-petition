@@ -36,7 +36,7 @@ class SwiCsvExporter {
     public function export( $query ) {
         global $pagenow;
 
-        if ( $pagenow === 'edit.php' && !isset( $_GET['swi_signatories_export'] ) ) {
+        if ( !($pagenow === 'edit.php' && isset( $_GET['swi_signatories_export'] ) ) ) {
             return $query;
         }
 
